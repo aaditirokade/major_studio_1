@@ -1,8 +1,8 @@
 **Assignment: Qualitative Data**
 
 Provided infographics primarily has 2 parts
-- **Part1:** Global access to electricity
-- **Part2:** Global deficit of electricity access
+- **Part1:** Africa's access to electricity (relative to global score)
+- **Part2:** Africa's contribution to the deficit of electricity access (relative to global score)
 
 Design decisions:
 
