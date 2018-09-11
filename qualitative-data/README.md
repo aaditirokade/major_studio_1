@@ -26,8 +26,7 @@ This information can be effectively represented using a bar. Simple and minimal.
 **Iconography**
 - Icons representaing Lit and unlit electric bulb are used in part1 *(access)* and part2 *(deficit)*
 
-
-
+https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/major-studio-1/qualitative-data/index.html
 
 
 
