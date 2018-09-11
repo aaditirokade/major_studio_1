@@ -4,7 +4,8 @@ Provided infographics primarily has 2 parts
 - **Part1:** Africa's access to electricity (relative to global score)
 - **Part2:** Africa's contribution to the deficit of electricity access (relative to global score)
 
-Design decisions:
+
+**Design decisions:**
 
 **Color** *(reference- Map1: Transforming lives through renewable energy access in Africa)*
 
