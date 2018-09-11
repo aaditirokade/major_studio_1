@@ -23,11 +23,11 @@ function draw() {
     
     var y=40;
     
-    //------------------------------------------part1: electricity access
+    //------------------------------------------part1: access
     //title1
     textSize(14);
     fill('rgb(0,0,0)');
-    text('No access to electricity', 40, y);
+    text('Access to electricity', 40, y);
     
     //bar1
     x=180;
@@ -35,7 +35,7 @@ function draw() {
     //white
     for(i=0;i<10;i++){
     x+=42;
-    fill('white');
+    fill('#e2e2e2');
     rect(x, 31, y, 10);
     }
     
@@ -43,7 +43,7 @@ function draw() {
     //blue
     for(i=0;i<9;i++){
     x+=42;
-    fill('lightblue');
+    fill('#0b6623');
     rect(x, 31, y, 10);
     }
     
@@ -51,7 +51,7 @@ function draw() {
     //red
     for(i=0;i<4;i++){
     x+=42;
-    fill('rgb(230,50,50)');
+    fill('#3bb143');
     rect(x, 31, y, 10);
     }
     //------------------------------------------part1: labels
@@ -77,7 +77,7 @@ function draw() {
     fill('rgb(0,0,0)');
     text('of 10 people globally', 608, y);
     
-    //---------------------------------------------
+    //-----------------------------------------part2: 2014
     
     y+=55;
     
@@ -85,7 +85,7 @@ function draw() {
     textSize(14);
     //textStyle(BOLD);
     fill('rgb(0,0,0)');
-    text('Global Deficit', 40, y);
+    text('Global Deficit of access', 40, y);
     textSize(10);
     text('sub-saharan Africa\'s contribution', 40, y+15);
     
@@ -93,15 +93,15 @@ function draw() {
     
     //bar2
     x=0;
-    fill('lightblue');
+    fill('#e2e2e2');
     rect(222, y-10, 420, 10);
     
     x=0;
-    fill('orange');
+    fill('#e03c31');
     rect(222, y-10, 239.4, 10);
     
     
-    //---------------------------------part2: labels
+    //-------------------------------------part2: labels
     
     y+=25;
     
@@ -113,23 +113,23 @@ function draw() {
     textSize(11);
     textAlign(LEFT);
     fill('rgb(0,0,0)');
-    text('% in 2014 ~ 609 million Africans', 477, y);
+    text('% ~ 609 million', 477, y);
    
     
-    //-------------------------------------global deficit 2030
+    //-------------------------------------Part3: 2030
     
      y+=35;
     
     //bar2
     x=0;
-    fill('lightblue');
+    fill('#e2e2e2');
     rect(222, y-10, 420, 10);
     
     x=0;
-    fill('red');
-    rect(222, y-10, 245.2, 10);
+    fill('#8c2020');
+    rect(222, y-10, 250.2, 10);
     
-    //---------------------------------labels: part3
+    //------------------------------------part3: labels
     
      y+=25;
       
@@ -140,7 +140,7 @@ function draw() {
     textSize(11);
     textAlign(LEFT);
     fill('rgb(0,0,0)');
-    text('% in 2030 ~ 654 million Africans ', 482, y);
+    text('% ~ 654 million', 482, y);
     
     
     //------------------------------------------part4: drift
@@ -149,18 +149,18 @@ function draw() {
     
     //bar2
     x=0;
-    fill('lightblue');
+    fill('#e2e2e2');
     rect(222, y-10, 420, 10);
     
     x=0;
-    fill('red');
-    rect(222, y-10, 245.2, 10);
+    fill('#8c2020');
+    rect(222, y-10, 250.2, 10);
     
     x=0;
-    fill('orange');
+    fill('#e03c31');
     rect(222, y-10, 239.4, 10);
     
-    //------------------------------------------part4: drift labels
+    //------------------------------------------part4:labels
     
      y+=25;
       
@@ -171,7 +171,7 @@ function draw() {
     textSize(11);
     textAlign(LEFT);
     fill('rgb(0,0,0)');
-    text('% rise predicted ~ 45 million Africans ', 474, y);
+    text('% rise ~ 45 million', 474, y);
     
     
 }
