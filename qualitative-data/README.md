@@ -12,7 +12,7 @@ Design decisions:
 - Red represents deficit of access to electricity
 - Shades/Tints represent the intensity
 
-**Form** *bar chart*
+**Form**
 - the infographic portrays the access to electricity for Africans in relation to the global access
 - it also talks about sub-saharan Africa's contribution to the global deficit for 2014 and predicts it for 2030
 
