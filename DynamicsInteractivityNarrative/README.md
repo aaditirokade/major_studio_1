@@ -1,8 +1,13 @@
-PAGE1:
 
-PAGE2:
 
-PAGE3:
+PAGE1: WIP
+
+update (11/08): https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/DynamicsInteractivityNarrative/page1/index3.html
+
+PAGE2: WIP
+
+PAGE3: WIP
+update (11/08): https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/DynamicsInteractivityNarrative/page3/page3index.html
 
 
 Datasource:
