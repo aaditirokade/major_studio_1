@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <title>MapboxGL & D3 geo</title>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-axis.v1.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+
+   <style>
+        body {
+        	margin-top: 5px;
+        	margin-left: 5px;
+        	margin-right: 5px;
+        	margin-bottom: 5px;
+        }
+        
+        .line {
+            fill: none;
+            stroke: #ffab00;
+            stroke-width: 1;
+            }
+            
+            .overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.dot {
+    fill: #ffab00;
+    stroke: #fff;
+}
+  
+  .focus circle {
+  fill: none;
+  stroke: steelblue;
+}
+    </style>
+</head>
+
+<body>
+    
+    <div id="map">
+       <!-- <text x="40" y="40" font-family="sans-serif" font-size="20px" fill="white"> AFRICA: POPULATION (2012-16) </text>-->
+    </div>
+    <div id="map2"></div>
+    <div id="overlay"></div>
+    <script src="script4.js"></script>
+   
+</body>
