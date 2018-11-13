@@ -1,7 +1,7 @@
 
 Project Statement:
 
-I'm visualizing % Population, % Electricity and GDP (Africa) for a timespan of 5 years: 2012-2016 (=> timespan selected based on the availibility of data) to analyze trends over this timespan and facilitate comparitive study to observe if any relationship exists between aforementioned factors and if yes, its direction.
+I'm visualizing % Population, % Electricity and GDP (Africa) for a timespan of 5 years: 2012-2016 (=> timespan selected based on the availability of data) to analyze trends over this timespan and facilitate comparative study to observe if any relationship exists between aforementioned factors and if yes, its direction.
 
 
 Link:
