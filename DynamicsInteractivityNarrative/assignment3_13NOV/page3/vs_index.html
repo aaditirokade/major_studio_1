@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <style type="text/css">
+        
+            text{
+                text-align: center;
+                letter-spacing: 0.5px;
+                font-family: 'lato';
+            }
+            
+            div.tooltip {	
+                position: absolute;			
+                text-align: left;
+                width: 150px;					
+                height: 80px;					
+                padding: 4px;
+                font: 10px sans-serif;
+                font-family: 'lato';
+                background: snow;	
+                border: 0px;		
+                border-radius: 4px;
+                line-height: 14px;
+             }
+             
+             text.title{
+                 font: 14px sans-serif;
+                 font-family: 'lato';
+                 font-style: bold;
+                 margin-left:50px;
+                 margin-top:60px;
+                 text-align: center;
+             }
+             
+             text.type1{
+                 
+                 font: 12px sans-serif;
+                 font-family: 'lato';
+                 font-style: bold;
+                 margin-top:100px;
+                 margin-left:50px;
+                 
+             }
+             text.type2{
+                 
+                 font: 12px sans-serif;
+                 font-family: 'lato';
+                 font-style: bold;
+                 margin-top:100px;
+                 margin-left:50px;
+                 
+             }
+             text.type3{
+                 
+                 font: 12px sans-serif;
+                 font-family: 'lato';
+                 font-style: bold;
+                 margin-top:100px;
+                 margin-left:50px;
+                 
+             }
+             
+        </style>
+    </head>
+    <body onsize='window.location.reload(true)'>       <!--window event-->
+         <script>
+          
+            var years = ['1990','1991', '1992','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016'];
+
+            d3.json('allData.json').then((data) => {
+                us = data.filter((data) => { var indi = 'USA'; return data.countryCode.match(indi);})
+                
+                //aer : 2.1_ACCESS.CFT.TOT
+                aer = data.filter((data) => { var indi1 = '1.2_ACCESS.ELECTRICITY.RURAL'; return data.indicatorCode.match(indi1);})
+                aeu = data.filter((data) => { var indi2 = '1.3_ACCESS.ELECTRICITY.URBAN'; return data.indicatorCode.match(indi2);})
+                aet = data.filter((data) => { var indi3 = '2.1_ACCESS.CFT.TOT'; return data.indicatorCode.match(indi3);})
+                
+                
+                var x=50;
+                var y=30
+                
+                // HEADING
+                // d3.select('body').append('div').append('text').text('ELECTRICITY ACCESS').attr('class','title').attr("x",x).attr("y",y)
+   
+                // // TAB1
+                // d3.select('body').append('text').append('text').text('% TOTAL POPULATION').attr('class','type1').attr('x', 0).attr('y', 0)
+	               //        .on('mouseover',function(d){
+	               //           d3.select(this)
+	               //             .style('background','cornsilk')})
+	               //        .on('mouseout',function(d){
+	               //           d3.select(this)
+	               //             .style('background','transparent')})
+	               //        .on('click', (d)=>{
+    	           //             svg(aet);})
+                    
+                //   // TAB2     
+                //   d3.select('body').append('text').text('% RURAL POPULATION').attr('class','type2').attr("x", x+250).attr("y", y+30)
+	               //          .on('mouseover',function(d){
+	               //             d3.select(this)
+	               //               .style('background','cornsilk')})
+	               //          .on('mouseout',function(d){
+	               //             d3.select(this)
+	               //               .style('background','transparent')})
+	               //          .on('click', (d)=>{
+	               //               svg(aer);})
+	                   
+	                   //// TAB 3
+	                   //d3.select('body').append('text').text('% URBAN POPULATION').attr('class','type3').attr("x", x+350).attr("y", y+30)
+	                   //     .on('mouseover',function(d){
+	                   //         d3.select(this)
+	                   //           .style('background','cornsilk')})
+	                   //     .on('mouseout',function(d){
+	                   //         d3.select(this)
+	                   //           .style('background','transparent')})
+	                   //     .on('click', (d)=>{
+	                   //         svg(aeu);})
+            
+                
+                
+            })
+
+
+        let svg = (data) => {
+             
+           
+          
+             let graph = d3.select('body')
+                    .append('svg')
+                    .attr('width', window.innerWidth + 'px')
+                    .attr('height', window.innerHeight + 'px');
+	                        
+             let modal = graph
+                    .append('g')
+                    .attr('id', 'modal');
+            
+             let group = graph
+                    .append('g')
+                    .attr('id', 'group');
+                    
+             var div = d3.select('body')
+                         .append('div')	
+                         .attr('class', 'tooltip');
+                    
+             let bars = group.selectAll('g')
+                    .data(data)
+                    .enter()
+                    .append('g')
+                    .attr('transform', (d, i) => {return `translate(0, ${i * window.innerHeight/150})`;})
+                    
+                    
+            bars.append('text')
+                  .text( (d,i) => { return d.countryCode; })
+                  .attr("x", 30)
+                  .attr("y", 30) 
+                  .attr("font-family", "sans-serif")
+                  .attr("font-size", "5px")
+                  .attr("fill", "red")
+                  .attr('id', 'txt');
+                 
+                 
+            var x=50; var y=27;
+            //2000 
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2000'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'lightblue')
+                 .attr('id', 'rct1')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'cornflowerblue' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2000'+'<br/>'+ 'Value: '+ d['2000'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'lightblue' )});
+                  x +=120;
+                 
+            //2002   
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2002'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'lightgreen')
+                 .attr('id', 'rct2')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'mediumseagreen' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2002'+'<br/>'+ 'Value: '+ d['2002'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'lightgreen' )});
+                 x +=120;
+                 
+                 
+           //2004
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2004'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'lightpink')
+                 .attr('id', 'rct3')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'fuchsia' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2004'+'<br/>'+ 'Value: '+ d['2004'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'lightpink' )});
+                 x +=120;
+                 
+                 
+            //2006     
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2006'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'khaki')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'darkkhaki' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2006'+'<br/>'+ 'Value: '+ d['2006'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'khaki' )});
+                 x +=120;
+                 
+             //2008 
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2008'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'mediumturquoise')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'lightseagreen' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2008'+'<br/>'+ 'Value: '+ d['2008'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'mediumturquoise' )});
+                 x +=120;
+            
+            //2010     
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2010'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'plum')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'mediumorchid' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2010'+'<br/>'+ 'Value: '+ d['2010'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'plum' )});
+                 x +=120;
+                 
+            //2012
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2012'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'mediumpurple')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'indigo' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2012'+'<br/>'+ 'Value: '+ d['2012'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'mediumpurple' )});
+                 x +=120;
+            
+            //2014
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2014'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'silver')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'gray' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2014'+'<br/>'+ 'Value: '+ d['2014'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'silver' )});
+                 x +=120;
+            
+            //2016
+            bars.append('rect')
+                 .attr('width', (d,i)=>{return d['2016'];}) // TODO
+                 .attr('height', '3px')  // TODO
+                 .attr('x', x)
+                 .attr('y', y)
+                 .style('fill', 'burlywood')
+                 .on('mouseover', function(d) {
+                     d3.select(this)
+                       .style( 'fill' , 'sienna' );
+                       
+                     div.transition()		
+                        .duration(150)		
+                        .style("opacity", .9);
+                        
+                     div.html(d.countryName + '<br/>' + d.indicatorCode +'<br/>' +'Year: 2016'+'<br/>'+ 'Value: '+ d['2016'])	
+                           .style("left", (d3.event.pageX) + "px")		
+                           .style("top", (d3.event.pageY - 28) + "px");})
+                           
+                  .on('mouseout', function(d) {
+                        d3.select(this)
+                          .style( 'fill' , 'burlywood' )});
+                 x +=120;
+            
+        }
+         
+        </script>
+    </body>
+</html>
