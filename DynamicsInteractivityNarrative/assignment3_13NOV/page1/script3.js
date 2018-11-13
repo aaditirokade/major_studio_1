@@ -392,7 +392,7 @@ var svg3 = d3.select("#overlay").append("svg")
       .style("font-family", "lato")
       
     // VIEW ALL LINK   
-    svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page3/page3index.html")
+    svg3.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/DynamicsInteractivityNarrative/assignment3_13NOV/page3/page3index.html")
       .append('text')
       .attr('x','600').attr('y','60')
       .text('VIEW ALL >>')
