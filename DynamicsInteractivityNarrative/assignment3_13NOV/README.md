@@ -32,3 +32,11 @@ Source: International Monetary Fund
 Title:  World Economic Outlook Database
 Release date: April 2017
 Electronic Location or Identifier: https://www.gfmag.com/global-data/economic-data/countries-highest-gdp-growth-2017
+
+
+
+*** WIP: further improvements strategy***
+- color palette : considerate of color blindness
+- Additional metadata: conclusive statements on Trends page
+- implementation of dropdown
+- implementation of centroid for selection 
