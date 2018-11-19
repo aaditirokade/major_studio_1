@@ -1,0 +1,185 @@
+body {
+        	margin-top: 5px;
+        	margin-left: 5px;
+        	margin-right: 5px;
+        	margin-bottom: 5px;
+        }
+        #map {
+          position:fixed;
+          width: 50%;
+          height: 100%;
+          margin: auto auto;
+        }
+        #map2 {
+          position:fixed;
+          left: 50%;
+          width: 50%;
+          height: 100%;
+          margin: auto auto;
+          transition: left .5s ease;
+        }
+        #detail #map2 {
+            left: 0%;
+        }
+        
+        svg {
+          position: absolute;
+          top:0;
+          bottom:0;
+          width: 100%;
+          height: 100%;
+        }
+         svg2 {
+          position: absolute;
+          top:0;
+          bottom:0;
+          width: 100%;
+          height: 100%;
+        }
+        .hidden {
+        	display: none;
+        }
+        text {
+            transition: fill-opacity 0.5s;
+            font-size: 12pt;
+        }
+        
+        #label1{
+            position: absolute;
+            z-index: 0;
+            left:38%;
+            top:10%;
+            font-family: Lato;
+            font-size: 14px;
+            color: #efefef;
+        }
+        
+        #label2 {
+            position: absolute;
+            z-index: 1;
+            left:37%;
+            top:10%;
+            font-family: Lato;
+            font-size: 14px;
+            color: #efefef;
+            /*color: gold;*/
+        }
+        
+        #label3 {
+            position: fixed;
+            z-index: 0;
+            left:10%;
+            top:10%;
+            font-family: Lato;
+            font-size: 16px;
+            color: #efefef;
+        }
+        
+        div.tooltip {	
+                position: fixed;			
+                text-align: left;
+                width: 120px;					
+                height: 40px;					
+                padding: 4px;
+                font: 12px sans-serif;
+                font-family: 'Lato', sans-serif;
+                font-weight: bold;
+                background: snow;	
+                border: 0px;		
+                border-radius: 3px;
+                line-height: 14px;
+                visibility: hidden;
+                color: 'black';
+             }
+             
+        .line1 {
+            fill: none;
+            stroke: red;
+            stroke-width: 1;
+            }
+            
+        .line2 {
+            fill: none;
+            stroke: blue;
+            stroke-width: 1;
+            }
+            
+        .overlay {
+            position: fixed;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            margin: auto auto;
+            fill: black;
+            /*pointer-events: all;*/
+            left:0;
+        }
+
+
+        .dot , .dot3{
+            fill: red;
+            /*stroke: #fff;*/
+        }
+        
+        .dot2 , .dot4 {
+            fill: blue;
+            /*stroke: #fff;*/
+        }
+             
+        .this{
+           text-align: center;
+        }
+        
+        .select{
+        z-index: 9999;
+        left: 90%;
+        }
+        
+        
+        /* button1 */
+        #urbtn1, #urbtn2{
+            position: absolute;
+            background: #191a1a;
+            z-index: 0;
+            left: 38%;
+            top: 15%;
+            border: 1px solid darkgray;
+            color: lightgray;
+            text-align: center;
+            width: 10%;
+            height: 3.5%;
+            font-size: 12px;
+        }
+        
+        #rubtn1 , #rubtn2{
+            position: absolute;
+            background: #191a1a;
+            z-index: 0;
+            left: 48%;
+            top: 15%;
+            border: 1px solid darkgray;
+            color: lightgray;
+            text-align: center;
+            width: 10%;
+            height: 3.5%;
+            font-size: 12px;
+        }
+        
+        
+        #rubtn1:hover , #urbtn1:hover, #rubtn2:hover , #urbtn2:hover , #rubtn1:focus , #urbtn1:focus, #rubtn2:focus , #urbtn2:focus
+        {
+            background: gold;
+            opacity: 0.8;
+            color: black;
+            font-weight: bold;
+            border-color: transparent;
+        }
+        
+        .xlabels{
+            color: white;
+            stroke: white;
+            /*font-weight:bold;*/
+            font-size: 14px;
+            font-family: Lato;
+            
+        }

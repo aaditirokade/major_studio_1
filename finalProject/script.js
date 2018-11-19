@@ -62,9 +62,20 @@
                  
                         // TOOLTIP
                         div.transition().duration(150).style("opacity", 1).style("visibility", 'visible');
-                        
                         div.html(d.properties.name.toUpperCase()+'\n'+(d.properties.pop_est/20000000).toFixed(2))	
                            .style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - 28) + "px");
+                })
+                .on('click', function(e, i) {
+                     
+                     map.flyTo({
+                         center: e.geometry.coordinates[0][0],
+                         zoom: 4
+                     });
+
+                    d3.select('body').attr('id','detail');
+                    plot(e.properties.brk_a3); 
+                    document.getElementById('map2').style.visibility = "hidden";
+                      
                 })
                 .on('mouseout', function() {
                     
@@ -109,7 +120,7 @@
                 .attr('id','label1')
                 .attr("x", window.innerWidth/5)
                 .attr("y", 40)
-                .text('POPULATION (2016)')
+                .text('% POPULATION (2016)')
                 .attr("font-family", "sans-serif")
                 .style("font-size", 18)
                 .style("fill", "white")
@@ -119,7 +130,7 @@
                 .attr('id','label2')
                 .attr("x", window.innerWidth/5)
                 .attr("y", 40)
-                .text('ENERGY ACCESS (2016)')
+                .text('% ENERGY ACCESS (2016)')
                 .attr("font-family", "sans-serif")
                 .style("font-size", 18)
                 .style("fill", "white")
@@ -196,27 +207,14 @@
                 })
                  .on('click', function(e, i) {
                      
-                    //console.log(e.properties.name);
-                    // make an other filter, find corresponding country
-                    // then use that to draw the chart
-                     
                      map2.flyTo({
                          center: e.geometry.coordinates[0][0],
                          zoom: 4
                      });
 
-
-                    d3.select('body')
-                      .attr('id','detail');
+                    d3.select('body').attr('id','detail');
+                    plot(e.properties.brk_a3);  
                       
-                      plot(e.properties.brk_a3);  
-                      
-                    // svg2.append('rect')
-                    //   .attr("x", window.innerWidth/3)
-                    //   .attr('y', 0)
-                    //   .attr('width', window.innerWidth/4)
-                    //   .attr('height',  window.innerHeight)
-                    //   .style('fill','#191a1a')
                 })
                 .on('mouseout', function() {
                     d3.select(this).attr("fill", "lightgray");
@@ -326,28 +324,17 @@
     
 
      //plotAxis1(eng);
-     plotAxis(urEngData, urPopData, countryName);
+     plotAxis(urEngData, urPopData, ruEngData, ruPopData, countryName);
+    //plotAxis1(ruEngData, ruPopData, countryName);
 });
 });
 
 
 // function plotAxis(eng12, eng13, eng14, eng15, eng16){
-function plotAxis(inEngData, inPopData, name){
-     
-     console.log(inPopData);
-    
-    var marginTop= 50;
-    var marginLeft=50;
-    var marginRight=50;
-    var marginBottom=50;
-    
-    width = 500;
-    height = 250;
-
+function plotAxis(inUrEngData, inUrPopData, inRuEngData, inRuPopData, name){
 
 // NUMBER OF DIVISIONS
- var dataXpts= 5;
- var dataYpts= 100;
+ var dataXpts= 5; var dataYpts= 100;
  
 // SCALE (VALUE OF 1 DIVISION)
 var xScale = d3.scaleLinear().domain([0, dataXpts]).range([0, 500]);
@@ -356,43 +343,24 @@ var yScale = d3.scaleLinear().domain([0,dataYpts]).range([200,0]);
 // SET VALUES FOR LINE GENERATION FOR GRAPH
 
 var line = d3.line()
-    .x(function(d, i) { return xScale(i); }) 
-    .y(function(d) { return yScale(d.y); })
-    // .curve(d3.curveMonotoneX)
+    .x(function(d, i) { return xScale(i); }) .y(function(d) { return yScale(d.y); })
+    .curve(d3.curveMonotoneX)
     
     
-// An array of objects of length N. Each object has key -> value pair, the key being "y" and the 
-// value is a random number
-// RAMDOM UNIFORM : returns a function for generating random numbers with a uniform distribution
+// ALL DATASETS
+var urEngData = d3.range(dataXpts).map(function(d,i) { return {"y": inUrEngData[i] } });
+var urPopData = d3.range(dataXpts).map(function(d,i) { return {"y": inUrPopData[i] } });
+var ruEngData = d3.range(dataXpts).map(function(d,i) { return {"y": inRuEngData[i] } });
+var ruPopData = d3.range(dataXpts).map(function(d,i) { return {"y": inRuPopData[i] } });
 
-var xdataset = ['2012','2013','2014','2015','2016'];
-
-// var dataset = d3.range(dataXpts).map(function(d,i) { return {"y": yValues[i] } });
-var dataset = d3.range(dataXpts).map(function(d,i) { return {"y": inEngData[i] } })
-var dataset2 = d3.range(dataXpts).map(function(d,i) { return {"y": inPopData[i] } })
-
-console.log(dataset);
-console.log(dataset2);
-
-// ADD SVG
-//<body><svg>, SVG container, state its height and width
-//add g : GROUP container
-// TRANSFORM : TRANSLATE --> translation along x and translation along y
-// here, TRANSFORM shifts the container to align with margins
 
 var svg3 = d3.select("#overlay").append("svg")                               
-    // .attr("width", width + marginLeft + marginRight)                    
-    // .attr("height", height + marginTop + marginBottom)
-    .attr("width", window.innerWidth/2)                    
-    .attr("height", window.innerHeight)
-    .attr("transform", "translate(" + (window.innerWidth/2)+ ",0)")
-    .append("g")
-    // .attr("transform", "translate(" + (window.innerWidth/2)+ ",0)");
+    .attr("width", window.innerWidth/2).attr("height", window.innerHeight)
+    .attr("transform","translate(" + (window.innerWidth/2)+ ",0)").append("g")
     
     
     let overlay = svg3.append('g').attr('id', 'overlay')
-                  .append('rect')
-                  .attr("x", 0).attr('y', 0)
+                  .append('rect').attr("x", 0).attr('y', 0)
                   .attr('width', window.innerWidth/2).attr('height', window.innerHeight)
                   .style('fill','#191a1a')
 
@@ -400,151 +368,109 @@ var svg3 = d3.select("#overlay").append("svg")
     // TITLE OVERLAY
     svg3.append('text').attr('id','label3')
       .attr('x','200').attr('y','60')
-      .text('%ENERGY ACCESS & % POPULATION (2012-16)')
-      .attr('fill','#efefef')
-      .style("font-size", "14px")
-      .style("font-family", "Lato")
+      .text('%ENERGY ACCESS & % POPULATION (2012-16)').attr('fill','#efefef')
+      .style("font-size", "14px").style("font-family", "Lato")
+      
       
     // VIEW ALL LINK   
     svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
-      .append('text')
-      .attr('x','600').attr('y','70')
-      .text('VIEW ALL')
-      .attr('fill','gold')
-      .style('font-weight','bold')
-      .style('text-decoration','underline')
-      .style("font-size", "12px")
-      .style("font-family", "Lato")
+      .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','gold')
+      .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
       
 
     // COUNTRY NAME
-   svg3.append('text')
-      .attr('x','320').attr('y','100')
-      .text(name)
-      .attr('fill','white')
-      .attr('stroke','white')
-      .style("font-size", "18px")
-      .style("font-family", "lato")
+   svg3.append('text').attr('x','320').attr('y','100')
+      .text(name).attr('fill','white').attr('stroke','white')
+      .style("font-size", "18px").style("font-family", "lato")
+      
       
     //   var urbanButton3 = d3.select('#overlay').append('button').attr('id','urbtn3').text('URBAN')
     //     urbanButton3.on('click', function() { console.log('here here'); })
     //     var ruralButton3 = d3.select('#overlay').append('button').attr('id','rubtn3').text('RURAL')
     //     ruralButton3.on('click', function() { console.log('here here'); })
-
-// DRAW X-AXIS
-// add another group container
-// asign it a class name - class can be used to identify more than one elements
-// transform by height (x axis is positioned at the bottom of graph)
-
-// d3.axisBottom --> Constructs a new bottom-oriented axis generator for the given scale, with empty 
-//tick arguments, a tick size of 6 and padding of 3. In this orientation, ticks are drawn below the 
-//horizontal domain path
-
-// call the x axis in group tag using .call(scale) method
-
-// svg3.append("g")
-//     .attr("class", "x axis")
-//     //.attr("transform", "translate(0," + height + ")")
-//     .attr("transform", "translate(120," + (height+180)+ ")")
-//     .call(d3.axisBottom(xScale))
-//     .attr('fill','white').attr('color','#191a1a');
-
-
-
-// DRAW Y-AXIS
-// ADD SVG --> GROUP container
-//y axis- no transformation needed as it's towards extrame right
-// call the y axis in group tag using .call(scale) method
-
-svg3.append("g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(120,230)")
-    .call(d3.axisLeft(yScale))
-    .attr('color','white'); // Create an axis component with d3.axisLeft
-
-
-// ADD SVG--> PATH container
-// bind the data to PATH, and call the line generator 
-// assign class for styling
-// LINE GENERATOR : the shape of an SVG Path element is defined by one attribute: d
-svg3.append("path")
-    .datum(dataset) 
-    .attr("class", "line")
-    .attr("d", line)
-    .attr("transform", "translate(120,230)");
-
-
-// CIRCLE for each DATAPOINT
-//dy defines a shift along the y-axis for each individual glyph relative to the preceding glyph
-svg3.selectAll(".dot")
-    .data(dataset)
-    .enter().append("circle") // Uses the enter().append() method
-    .attr("class", "dot") // Assign a class for styling
-    .attr("cx", function(d, i) { return xScale(i) })
-    .attr("cy", function(d,i) { return yScale(d.y) })
-    .attr("r", 3)
-    .attr("transform", "translate(120,230)")
-      .on("mouseover", function(a, b, c) { 
-  			console.log(a) 
-        // this.attr('class', 'focus')
-		})
-	   .on("mouseout", function() {  });
-
-
-
-    // CHART 2
     
-    svg3.append("path")
-    .datum(dataset2) 
-    .attr("class", "line2")
-    .attr("d", line)
-    .attr("transform", "translate(120,230)");  //470
-                  
-                  
-    svg3.selectAll(".dot2")
-    .data(dataset2)
-    .enter().append("circle") // Uses the enter().append() method
-    .attr("class", "dot2") // Assign a class for styling
-    .attr("cx", function(d, i) { return xScale(i) })
-    .attr("cy", function(d,i) { return yScale(d.y) })
-    .attr("r", 3)
-    .attr("transform", "translate(120,230)")
-      .on("mouseover", function(a, b, c) { 
-  			console.log(a) 
-        // this.attr('class', 'focus')
-		})
-	   .on("mouseout", function() {  });
-	   
-	   
-	   // 2012    
-svg3.append('text').attr('x','110').attr('y','460')
-      .text('2012').attr('fill','white').attr('stroke','white')
-      .style("font-size", "14px").style("font-family", "lato")
-      
-// 2013    
-svg3.append('text').attr('x','210').attr('y','460')
-      .text('2013').attr('fill','white').attr('stroke','white')
-      .style("font-size", "14px").style("font-family", "lato")
-      
-// 2014    
-svg3.append('text').attr('x','300').attr('y','460')
-      .text('2014').attr('fill','white').attr('stroke','white')
-      .style("font-size", "14px").style("font-family", "lato")
+    // X-AXIS
+    // svg3.append("g")
+    //     .attr("class", "x axis")
+    //     //.attr("transform", "translate(0," + height + ")")
+    //     .attr("transform", "translate(120," + (height+180)+ ")")
+    //     .call(d3.axisBottom(xScale))
+    //     .attr('fill','white').attr('color','#191a1a');
 
-// 2015      
-svg3.append('text').attr('x','400').attr('y','460')
-      .text('2015').attr('fill','white').attr('stroke','white')
-      .style("font-size", "14px").style("font-family", "lato")
-      
-// 2016        
-svg3.append('text').attr('x','510').attr('y','460')
-      .text('2016').attr('fill','white').attr('stroke','white')
-      .style("font-size", "14px").style("font-family", "lato")
-      
-svg3.append('line').attr('x1','120').attr('y1','430').attr('x2','540').attr('y2','430')
-      .attr('fill','white').attr('stroke','white')
-      
-      
+
+// *********** CHART1 *************
+// X-AXIS
+svg3.append('line').attr('x1','160').attr('y1','370').attr('x2','565').attr('y2','370')
+    .attr('fill','white').attr('stroke','white')
+    
+// X-AXIS LABELS 
+var xlabels = svg3.append('g').attr('class','xlabels'); 
+xlabels.append('text').attr('x','140').attr('y','400').text('2012'); xlabels.append('text').attr('x','240').attr('y','400').text('2013'); 
+xlabels.append('text').attr('x','340').attr('y','400').text('2014'); xlabels.append('text').attr('x','440').attr('y','400').text('2015'); 
+xlabels.append('text').attr('x','540').attr('y','400').text('2016');
+    
+    
+// Y-AXIS
+svg3.append("g").attr("class", "y axis").attr("transform", "translate(160,170)")
+    .call(d3.axisLeft(yScale)).attr('color','white');
+
+
+// PATHS
+// ***LINE GENERATOR : the shape of an SVG Path element is defined by one attribute: d
+svg3.append("path").datum(urEngData).attr("class", "line1").attr("d", line).attr("transform", "translate(160,170)");
+svg3.append("path").datum(urPopData).attr("class", "line2").attr("d", line).attr("transform", "translate(160,170)");
+
+// ENG DATAPOINT CIRCLES
+svg3.selectAll(".dot").data(urEngData).enter().append("circle").attr("class", "dot")
+    .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
+    .attr("r", 3).attr("transform", "translate(160,170)")
+    .on("mouseover", function(a, b, c){console.log(a); })
+    .on("mouseout", function() {  });
+
+// POP DATAPOINT CIRCLES
+svg3.selectAll(".dot2").data(urPopData).enter().append("circle").attr("class", "dot2")
+    .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
+    .attr("r", 3).attr("transform", "translate(160,170)")
+    .on("mouseover", function(a, b, c){ console.log(a); })
+	.on("mouseout", function(){  });
+	   
+ 
+ 
+ var diff = 300;
+// *********** CHART2 *************
+// X-AXIS
+svg3.append('line').attr('x1',160).attr('y1',370+diff).attr('x2',565).attr('y2',370+diff)
+    .attr('fill','white').attr('stroke','white')
+    
+// X-AXIS LABELS 
+var xlabels = svg3.append('g').attr('class','xlabels'); 
+xlabels.append('text').attr('x','140').attr('y',400+diff).text('2012'); xlabels.append('text').attr('x','240').attr('y',400+diff).text('2013'); 
+xlabels.append('text').attr('x','340').attr('y',400+diff).text('2014'); xlabels.append('text').attr('x','440').attr('y',400+diff).text('2015'); 
+xlabels.append('text').attr('x','540').attr('y',400+diff).text('2016');
+
+// Y-AXIS
+svg3.append("g").attr("class", "y axis").attr("transform", `translate(160,${170+diff})`)
+    .call(d3.axisLeft(yScale)).attr('color','white');
+    
+// PATHS
+// ***LINE GENERATOR : the shape of an SVG Path element is defined by one attribute: d
+svg3.append("path").datum(ruEngData).attr("class", "line1").attr("d", line).attr("transform",`translate(160,${170+diff})`);
+svg3.append("path").datum(ruPopData).attr("class", "line2").attr("d", line).attr("transform",`translate(160,${170+diff})`);
+
+
+// ENG DATAPOINT CIRCLES
+svg3.selectAll(".dot3").data(ruEngData).enter().append("circle").attr("class", "dot3")
+    .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
+    .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
+    .on("mouseover", function(a, b, c){console.log(a); })
+    .on("mouseout", function() {  });
+
+// POP DATAPOINT CIRCLES
+svg3.selectAll(".dot4").data(ruPopData).enter().append("circle").attr("class", "dot4")
+    .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
+    .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
+    .on("mouseover", function(a, b, c){ console.log(a); })
+	.on("mouseout", function(){  });
 
     }
 

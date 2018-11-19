@@ -1,0 +1,119 @@
+            body{
+            background: #191a1a;
+            /*margin-top:20px;*/
+            }
+            
+            #header{
+                position:fixed;
+                top:0%;
+                left:0%;
+                background: white;
+                z-index:2;
+                width: 800px;
+                height: 10%;
+            }
+            
+            div.heading2{
+                margin-top:25px;
+                margin-left:35%;
+                font-family: Lato;
+                color: #efefef;
+                font-weight: 500;
+                font-size: 12;
+            }
+            
+            text.labels{
+                text-align: center;
+                letter-spacing: 0.5px;
+                font-family: 'lato';
+                color: #efefef;
+                font-weight: 400;
+                font-size: 14px;
+            }
+            
+            div.tooltip {	
+                position: absolute;			
+                text-align: left;
+                width: 150px;					
+                height: 80px;					
+                padding: 4px;
+                font: 21px sans-serif;
+                font-family: 'lato';
+                background: snow;	
+                border: 0px;		
+                border-radius: 2px;
+                font-weight: bold;
+                /*line-height: 14px;*/
+                font-weight: bold;
+             }
+             
+             
+             
+             div.tooltip {	
+                position: absolute;			
+                text-align: left;
+                width: 85px;					
+                height: 15px;					
+                padding: 5px;
+                font: 12px sans-serif;
+                font-family: 'Lato', sans-serif;
+                font-weight: bold;
+                background: snow;	
+                border: 0px;		
+                border-radius: 3px;
+                line-height: 14px;
+                visibility: hidden;
+                color: 'black';
+             }
+             
+        #urbtn4{
+            position: absolute;
+            background: #191a1a;
+            z-index: 0;
+            left: 47%;
+            top: 9%;
+            border: 1px solid darkgray;
+            color: lightgray;
+            text-align: center;
+            width: 5%;
+            height: 3.5%;
+            font-size: 14px;
+        }
+        
+        #rubtn4{
+            position: absolute;
+            background: #191a1a;
+            z-index: 0;
+            left: 52%;
+            top: 9%;
+            border: 1px solid darkgray;
+            color: lightgray;
+            text-align: center;
+            width: 5%;
+            height: 3.5%;
+            font-size: 14px;
+        }
+        
+        #rubtn4:hover , #urbtn4:hover{
+            background: gold;
+            opacity: 0.8;
+            color: black;
+            font-weight: bold;
+            border-color: transparent;
+        }
+        
+           .leftlabel{
+                z-index:1;
+                font-family: Lato;
+                color: #efefef;
+                font-weight: 500;
+                font-size: 12;
+            }
+            
+            .rightlabel{
+                z-index:1;
+                font-family: Lato;
+                color: #efefef;
+                font-weight: 500;
+                font-size: 12;
+            }
