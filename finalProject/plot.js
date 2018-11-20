@@ -104,7 +104,7 @@ var svg3 = d3.select("#overlay").append("svg")
       
       
     // VIEW ALL LINK   
-    svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
+    svg3.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html")
       .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','gold')
       .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
       
