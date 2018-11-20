@@ -1,4 +1,4 @@
-d3.select('body').append('div').attr("class","heading2").append('text').text(' GAP BETWEEN THE ENERGY ACCESS OF URBAN & RURAL AFRICA ').attr('class','title')
+d3.select('body').append('div').attr("class","heading2").append('text').text(' GAP BETWEEN ACCESS TO ENERGY FOR URBAN & RURAL AFRICA ').attr('class','title')
                 
                 var urbanButton4 = d3.select('body').append('button').attr('id','urbtn4').text('URBAN')
                 urbanButton4.on('click', function() { rural(); })
@@ -12,39 +12,41 @@ d3.select('body').append('div').attr("class","heading2").append('text').text(' G
                 .attr('class','leftlabel').text('% POPULATION ').style('fill','white').style('font-size','14px')
                 
                 label.append('text').attr('x','55%').attr('y','60%')
-                .attr('class','rightlabel').text('% ENERGY ACCESS').style('fill','white').style('font-size','14px')
+                .attr('class','rightlabel').text('% ACCESS TO ENERGY').style('fill','white').style('font-size','14px')
                 
-                
-                label.append('rect').attr('x','23%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#9ac7f4')
+                // POPULATION LEGENDS
+                label.append('rect').attr('x','23%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#94d8e8')
                 label.append('text').attr('x','24.5%').attr('y','82%').text('2012').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                 
-                label.append('rect').attr('x','28%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#76b5f4')
+                label.append('rect').attr('x','28%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#4dbfd9')
                 label.append('text').attr('x','29.5%').attr('y','82%').text('2013').style('fill','white').style('font-size','12px').attr('font-family','Lato')
 
-                label.append('rect').attr('x','33%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#55aaff')
+                label.append('rect').attr('x','33%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#11a9cc')
                 label.append('text').attr('x','34.5%').attr('y','82%').text('2014').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                 
-                label.append('rect').attr('x','38%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#2994ff')
+                label.append('rect').attr('x','38%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#15a0d9')
                 label.append('text').attr('x','39.5%').attr('y','82%').text('2015').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                
-                label.append('rect').attr('x','43%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#0080ff')
+                label.append('rect').attr('x','43%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#1c91d0')
                 label.append('text').attr('x','44.5%').attr('y','82%').text('2015').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                
                // ENERGY ACCESS LEGENDS
-                label.append('rect').attr('x','54.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#ddb1b1')
+                label.append('rect').attr('x','54.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#ffe168')
                 label.append('text').attr('x','56%').attr('y','82%').text('2012').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                 
-                label.append('rect').attr('x','59.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#d89191')
+                label.append('rect').attr('x','59.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#fbcb43')
                 label.append('text').attr('x','61%').attr('y','82%').text('2013').style('fill','white').style('font-size','12px').attr('font-family','Lato')
 
-                label.append('rect').attr('x','64.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#d16f6f')
+                label.append('rect').attr('x','64.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#f4b400')
                 label.append('text').attr('x','66%').attr('y','82%').text('2014').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                 
-                label.append('rect').attr('x','69.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#d84444')
+                label.append('rect').attr('x','69.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#eca403')
                 label.append('text').attr('x','71%').attr('y','82%').text('2015').style('fill','white').style('font-size','12px').attr('font-family','Lato')
                
-                label.append('rect').attr('x','74.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#d60f0f')
+                label.append('rect').attr('x','74.5%').attr('y','75%').attr('width','12').attr('height','12').attr('fill','#e49307')
                 label.append('text').attr('x','76%').attr('y','82%').text('2015').style('fill','white').style('font-size','12px').attr('font-family','Lato')
+              
+              
               
               
  // *******RURAL*************
@@ -178,7 +180,7 @@ let svg = (data) => {
             bar12.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#efcaca').attr('id', 'rct1')
+                 .style('fill','#Ffe168')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -197,14 +199,14 @@ let svg = (data) => {
             bar13.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
                  
             // 2013 BARS
             bar13.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
-                 .attr('x',0).attr('y', 0)
-                 .style('fill','#e59c9c').attr('id', 'rct1')
+                 .attr('x',0).attr('y', 0).style('fill','#f8f06c')
+                 .style('fill','#fbcb43')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -223,13 +225,13 @@ let svg = (data) => {
             bar14.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
             // 2014 BARS
             bar14.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#dd7373').attr('id', 'rct1')
+                 .style('fill','#f4b400')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -254,7 +256,7 @@ let svg = (data) => {
             bar15.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#d64d4d').attr('id', 'rct1')
+                 .style('fill','#eca403')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -273,13 +275,13 @@ let svg = (data) => {
             bar16.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
             // 2016 BARS
             bar16.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')  // TODO
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#ce1515').attr('id', 'rct1')
+                 .style('fill','#e49307')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -296,41 +298,32 @@ let svg = (data) => {
        
             // 2012 SELECTION VAR
              let bar17 = group7.selectAll('g').data(p12).enter().append('g')
-                    .attr('transform', (d, i) => {return `translate(${(window.innerWidth/2-50)-d*3}, ${i * 3000/data.length+46})`;})
-            
+                    .attr('transform', (d, i) => {return `translate(${(window.innerWidth/2-50)-d*3}, ${i * 3000/data.length+46})`;});
+                 
             
             // 2012 BARS
-            bar17.append('rect')
-                 .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
-                 .attr('x',0).attr('y', 0)
-                 .style('fill','#a2d2f9').attr('id', 'rct1')
+            bar17.append('rect').attr('class', 'rect6').attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
+                 .attr('x',0).attr('y', 0).style('fill','#94d8e8')
+                 // .style('fill','#a2d2f9')
                  .on('mouseover',(d)=>{
-                  
-                  // HIGHLIGHT
-                  // bar12.select(this).style('background','cornsilk')
-                  
+              
                   // TOOLTIP
                   div.transition().duration(90).style("opacity", 1).style("visibility", 'visible');
                   div.html('2012 : '+d.toFixed(2)+'%').style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - 28) + "px");
                  });
-                 
-             
+                
                  
             // 2013 SELECTION VAR
              let bar18 = group8.selectAll('g').data(p13).enter().append('g')
                     .attr('transform', (d, i) => {return `translate(${(window.innerWidth/2-50)-d*3}, ${i * 3000/data.length+51})`;})
             
             // 2013 BARS
-            bar18.append('rect')
-                 .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
-                 .attr('x',0).attr('y', 0)
-                 .style('fill','#77b1f2').attr('id', 'rct1')
+            bar18.append('rect').attr('class', 'rect7').attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
+                 .attr('x',0).attr('y', 0).style('fill','#4dbfd9')
+                 // .style('fill','#77b1f2')
                  .on('mouseover',(d)=>{
-                  
-                  // HIGHLIGHT
-                  // bar12.select(this).style('background','cornsilk')
-                  
-                  // TOOLTIP
+ 
+                 // TOOLTIP
                   div.transition().duration(90).style("opacity", 1).style("visibility", 'visible');
                   div.html('2013 : '+d.toFixed(2)+'%').style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - 28) + "px");
                  });
@@ -340,14 +333,10 @@ let svg = (data) => {
                     .attr('transform', (d, i) => {return `translate(${(window.innerWidth/2-50)-d*3}, ${i * 3000/data.length+56})`;})
             
             // 2014 BARS
-            bar19.append('rect')
-                 .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
-                 .attr('x',0).attr('y', 0)
-                 .style('fill','#55aaff').attr('id', 'rct1')
+            bar19.append('rect').attr('class', 'rect8').attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
+                 .attr('x',0).attr('y', 0).style('fill','#11a9cc')
+                 // .style('fill','#55aaff')
                  .on('mouseover',(d)=>{
-                  
-                  // HIGHLIGHT
-                  // bar12.select(this).style('background','cornsilk')
                   
                   // TOOLTIP
                   div.transition().duration(90).style("opacity", 1).style("visibility", 'visible');
@@ -359,14 +348,10 @@ let svg = (data) => {
                     .attr('transform', (d, i) => {return `translate(${(window.innerWidth/2-50)-d*3}, ${i * 3000/data.length+61})`;})
             
             // 2015 BARS
-            bar110.append('rect')
-                 .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
-                 .attr('x',0).attr('y', 0)
-                 .style('fill','#2994ff').attr('id', 'rct1')
+            bar110.append('rect').attr('class', 'rect9').attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
+                 .attr('x',0).attr('y', 0).style('fill','#15a0d9')
+                 // .style('fill','#2994ff')
                  .on('mouseover',(d)=>{
-                  
-                  // HIGHLIGHT
-                  // bar12.select(this).style('background','cornsilk')
                   
                   // TOOLTIP
                   div.transition().duration(90).style("opacity", 1).style("visibility", 'visible');
@@ -378,14 +363,10 @@ let svg = (data) => {
                     .attr('transform', (d, i) => {return `translate(${(window.innerWidth/2-50)-d*3}, ${i * 3000/data.length+66})`;})
             
             // 2016 BARS
-            bar111.append('rect')
-                 .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
-                 .attr('x',0).attr('y', 0)
-                 .style('fill','#0080ff').attr('id', 'rct1')
+            bar111.append('rect').attr('class', 'rect10').attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
+                 .attr('x',0).attr('y', 0).style('fill','#1c91d0')
+                 // .style('fill','#0080ff')
                  .on('mouseover',(d)=>{
-                  
-                  // HIGHLIGHT
-                  // bar12.select(this).style('background','cornsilk')
                   
                   // TOOLTIP
                   div.transition().duration(90).style("opacity", 1).style("visibility", 'visible');
@@ -395,6 +376,7 @@ let svg = (data) => {
         }
  
 }
+
 
 
 
@@ -461,17 +443,10 @@ function urban(){
             let label = group1.selectAll('g').data(data).enter().append('g')
                               .attr('transform', (d, i) => {return `translate(0, ${i * 3000/data.length})`;})
                     
-      
-             
-            // COUNTRY LABELS : TEXT      
-            label.append('text').attr('class', 'labels')
-                  .text( (d,i) => { return d.countryCode; })
-                  .attr("x", window.innerWidth/2) .attr("y",60) // starting point
-                  .attr("font-family", "sans-serif").attr("fill", '#efefef').attr('id', 'txt')
+             // COUNTRY LABELS : TEXT      
+            label.append('text').attr('class', 'labels').text( (d,i) => { return d.countryCode; })
+                  .attr("x", window.innerWidth/2) .attr("y",60).attr("font-family", "sans-serif").attr("fill", '#efefef').attr('id', 'txt')
                   .on('mouseover',(d)=>{
-                  
-                  // HIGHLIGHT
-                  // bar12.select(this).style('background','cornsilk')
                   
                   // TOOLTIP
                   div.transition().duration(90).style("opacity", 1).style("visibility", 'visible');
@@ -521,14 +496,14 @@ function urban(){
             bar12.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
                  
             // 2012 BARS
             bar12.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#efcaca').attr('id', 'rct1')
+                 .style('fill','#Ffe168')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -547,14 +522,14 @@ function urban(){
             bar13.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
                  
             // 2013 BARS
             bar13.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#e59c9c').attr('id', 'rct1')
+                 .style('fill','#fbcb43')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -573,13 +548,13 @@ function urban(){
             bar14.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
             // 2014 BARS
             bar14.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#dd7373').attr('id', 'rct1')
+                 .style('fill','#f4b400')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -598,13 +573,13 @@ function urban(){
             bar15.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
             // 2015 BARS
             bar15.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#d64d4d').attr('id', 'rct1')
+                 .style('fill','#eca403')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -623,13 +598,13 @@ function urban(){
             bar16.append('rect')
                  .attr('width', 300).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25).attr('id', 'rct1')
+                 .style('fill','transparent').style('stroke', '#666').style('stroke-width', 0.25)
                  
             // 2016 BARS
             bar16.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')  // TODO
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#ce1515').attr('id', 'rct1')
+                 .style('fill','#e49307')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -653,7 +628,7 @@ function urban(){
             bar17.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#a2d2f9').attr('id', 'rct1')
+                 .style('fill','#94d8e8')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -674,7 +649,7 @@ function urban(){
             bar18.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#77b1f2').attr('id', 'rct1')
+                 .style('fill','#4dbfd9')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -693,7 +668,7 @@ function urban(){
             bar19.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#55aaff').attr('id', 'rct1')
+                 .style('fill','#11a9cc')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
@@ -712,7 +687,7 @@ function urban(){
             bar110.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#2994ff').attr('id', 'rct1')
+                 .style('fill','#15a0d9')
                  .on('mouseover',(d)=>{
                   
                   
@@ -729,7 +704,7 @@ function urban(){
             bar111.append('rect')
                  .attr('width', (d,i) =>{return d*3;}).attr('height', '5px')
                  .attr('x',0).attr('y', 0)
-                 .style('fill','#0080ff').attr('id', 'rct1')
+                 .style('fill','#1c91d0')
                  .on('mouseover',(d)=>{
                   
                   // HIGHLIGHT
