@@ -31,12 +31,12 @@
                 font-weight: 400;
                 font-size: 14px;
             }
-            
-            div.tooltip {	
+  
+             div.tooltip {	
                 position: absolute;	
                 text-align: center;
                 width: 100px;					
-                height: 90px;					
+                height: 95px;					
                 padding: 5px;
                 font: 12px sans-serif;
                 font-family: 'Lato', sans-serif;
@@ -48,7 +48,6 @@
                 visibility: hidden;
                 color: 'black';
              }
-             
              
         #urbtn4{
             position: absolute;
@@ -102,7 +101,4 @@
                 font-size: 12;
             }
            
-           .leftlabel{
-               text-align: right;
-           }
            

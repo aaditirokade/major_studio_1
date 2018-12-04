@@ -67,7 +67,10 @@
                         
                         // TOOLTIP
                         div.transition().duration(150).style("opacity", 1).style("visibility", 'visible');
-                        div.html(d.properties.name.toUpperCase()+'\n'+(filteredPop[0].ppur2016).toFixed(2)+' %')
+                        
+                        var text = d.properties.name.toUpperCase()+'\n'+(filteredPop[0].ppur2016).toFixed(2)+' % <br>';
+                        text += 'world';
+                        div.html(text)
                            .style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - 28) + "px");
                 })
                 .on('click', function(e, i) {

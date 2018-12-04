@@ -1,5 +1,6 @@
 function plot(country){
- document.getElementById("overlay").style.visibility = "visible";
+
+document.getElementById("overlay").style.visibility = "visible";
       
  var ruEngData = [];
  var ruPopData = [];
@@ -12,9 +13,10 @@ function plot(country){
  
  d3.json('data/allENERGYData.json').then((eng) => {
      d3.json('data/allPOPData1.json').then((pop) => {
+         d3.json('data/all_MigData.json').then((mig) => {
      
-    //  var country = 'BFA';
-        
+
+      console.log(mig) ; 
      
      for(var i=0;i<eng.length;i++){
         if (eng[i].countryCode === country){
@@ -55,7 +57,11 @@ function plot(country){
 
      //plotAxis1(eng);
      plotAxis(urEngData, urPopData, ruEngData, ruPopData, countryName);
+     
+     // AREA
+     areaPlot(urEngData, urPopData, ruEngData, ruPopData, countryName);
     //plotAxis1(ruEngData, ruPopData, countryName);
+});
 });
 });
 
@@ -85,27 +91,28 @@ var ruEngData = d3.range(dataXpts).map(function(d,i) { return {"y": inRuEngData[
 var ruPopData = d3.range(dataXpts).map(function(d,i) { return {"y": inRuPopData[i] } });
 
 
-var svg3 = d3.select("#overlay").append("svg")                               
-    .attr("width", window.innerWidth/2).attr("height", window.innerHeight)
+var svg3 = d3.select("#overlay").append("svg").attr('id','linePlot')                              
+    .attr("width", window.innerWidth/2).attr("height", '1500px')
     .attr("transform","translate(" + (window.innerWidth/2)+ ",0)").append("g")
     
     
     let overlay = svg3.append('g').attr('id', 'overlay')
                   .append('rect').attr("x", 0).attr('y', 0)
-                  .attr('width', window.innerWidth/2).attr('height', window.innerHeight)
+                  .attr('width', window.innerWidth/2).attr('height', '1500px')
                   .style('fill','#1D1E20')
 
+  
 
     // TITLE OVERLAY
     svg3.append('text').attr('id','label3')
       .attr('x','12%').attr('y','60')
-      .text('% ACCESS TO ENERGY & % POPULATION : 2012-16').attr('fill','#efefef')
+      .text('% ACCESS TO ELECTRICITY & % POPULATION : 2012-16').attr('fill','#efefef')
       .style("font-size", "14px").style("font-family", "Lato")
       
       
     // VIEW ALL LINK   
-    svg3.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html")
-      .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','gold')
+    svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
+      .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','#efefef')
       .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
       
 
@@ -156,7 +163,7 @@ xlabels.append('text').attr('x','540').attr('y','400').text('2016');
     
     
 // Y-AXIS
-svg3.append("g").attr("class", "y axis").attr("transform", "translate(160,170)")
+svg3.append("g").attr("class", "yAxis").attr("transform", "translate(160,170)")
     .call(d3.axisLeft(yScale)).attr('color','white');
 
 
@@ -164,6 +171,13 @@ svg3.append("g").attr("class", "y axis").attr("transform", "translate(160,170)")
 // ***LINE GENERATOR : the shape of an SVG Path element is defined by one attribute: d
 svg3.append("path").datum(urEngData).attr("class", "line1").attr("d", line).attr("transform", "translate(160,170)").style('stroke-width','2px');
 svg3.append("path").datum(urPopData).attr("class", "line2").attr("d", line).attr("transform", "translate(160,170)").style('stroke-width','2px');
+
+// // AREA
+
+// var area = svg3.area()
+//     .x(function(d) { return x(d.x); })
+//     .y0(height)
+//     .y1(function(d) { return y(d.y); });
 
 // ENG DATAPOINT CIRCLES
 svg3.selectAll(".dot").data(urEngData).enter().append("circle").attr("class", "dot")
@@ -181,8 +195,11 @@ svg3.selectAll(".dot2").data(urPopData).enter().append("circle").attr("class", "
 	   
  
  
+
+ 
+ 
+// *********** CHART 2 *************
  var diff = 300;
-// *********** PLOT 2 *************
 
 // PLOT2 NAME : URBAN
 svg3.append('text').attr('x',160).attr('y',150+diff).text('RURAL').attr('fill','white')
@@ -215,7 +232,7 @@ svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 483).attr("y", 9
 svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 583).attr("y", 90+diff).attr('width',15)
 
 // Y-AXIS
-svg3.append("g").attr("class", "y axis").attr("transform", `translate(160,${170+diff})`)
+svg3.append("g").attr("class", "yAxis").attr("transform", `translate(160,${170+diff})`)
     .call(d3.axisLeft(yScale)).attr('color','white');
     
 // PATHS
@@ -252,6 +269,163 @@ svg3.selectAll(".dot4").data(ruPopData).enter().append("circle").attr("class", "
 //                 return `rotate(180, ${x1}, ${y1})`;//rotate 180 degrees about x and y
 //             }); 
 
+
+
+// *********** CHART 3 *************
+ var diff = 660;
+
+// PLOT2 NAME : URBAN
+svg3.append('text').attr('x',160).attr('y',150+diff).text('NET MIGRATION, POPULATION GAP & %ACCESS TO ELECTRICITY').attr('fill','white')
+      .style("font-size", "12px").style("font-family", 'Lato')
+
+// X-AXIS
+svg3.append('line').attr('x1',160).attr('y1',370+diff).attr('x2',565).attr('y2',370+diff)
+    .attr('fill','white').attr('stroke','white')
+
+// DASHED LINES
+var dashed3 = svg3.append('g').attr('class','dashed2'); 
+dashed3.append('line').attr('x1',160).attr('y1',370-40+diff).attr('x2','565').attr('y2',370-40+diff);
+dashed3.append('line').attr('x1',160).attr('y1',370-80+diff).attr('x2','565').attr('y2',370-80+diff);
+dashed3.append('line').attr('x1',160).attr('y1',370-120+diff).attr('x2','565').attr('y2',370-120+diff);
+dashed3.append('line').attr('x1',160).attr('y1',370-160+diff).attr('x2','565').attr('y2',370-160+diff);
+dashed3.append('line').attr('x1',160).attr('y1',370-200+diff).attr('x2','565').attr('y2',370-200+diff);
+
+// X-AXIS LABELS 
+var xlabels3 = svg3.append('g').attr('class','xlabels'); 
+xlabels3.append('text').attr('x','140').attr('y',400+diff).text('2012'); 
+xlabels3.append('text').attr('x','240').attr('y',400+diff).text('2013'); 
+xlabels3.append('text').attr('x','340').attr('y',400+diff).text('2014'); 
+xlabels3.append('text').attr('x','440').attr('y',400+diff).text('2015'); 
+xlabels3.append('text').attr('x','540').attr('y',400+diff).text('2016');
+
+// GDP SVG
+
+svg3.append('svg:image').attr("xlink:href", "same.svg").attr("x", 183).attr("y", 90+diff).attr('width',10)
+svg3.append('svg:image').attr("xlink:href", "down.svg").attr("x", 283).attr("y", 90+diff).attr('width',15)
+svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 383).attr("y", 90+diff).attr('width',15)
+svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 483).attr("y", 90+diff).attr('width',15)
+svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 583).attr("y", 90+diff).attr('width',15)
+
+// Y-AXIS
+svg3.append("g").attr("class", "yAxis").attr("transform", `translate(160,${170+diff})`)
+    .call(d3.axisLeft(yScale)).attr('color','white');
+    
+// PATHS
+// ***LINE GENERATOR : the shape of an SVG Path element is defined by one attribute: d
+svg3.append("path").datum(ruEngData).attr("class", "line1").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
+svg3.append("path").datum(ruPopData).attr("class", "line2").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
+
+
+// ENG DATAPOINT CIRCLES
+svg3.selectAll(".dot3").data(ruEngData).enter().append("circle").attr("class", "dot3")
+    .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
+    .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
+    .on("mouseover", function(a, b, c){console.log(a); })
+    .on("mouseout", function() {  });
+
+// POP DATAPOINT CIRCLES
+svg3.selectAll(".dot4").data(ruPopData).enter().append("circle").attr("class", "dot4")
+    .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
+    .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
+    .on("mouseover", function(a, b, c){ console.log(a); })
+	.on("mouseout", function(){  });
     }
 
   }
+  
+  
+  
+  
+// ******** AREA PLOT ************
+
+  function areaPlot(inUrEngData, inUrPopData, inRuEngData, inRuPopData, name){
+      document.getElementById('area').style.visibility = "hidden";
+      //document.getElementById('linePlot').style.visibility = "hidden";
+      
+    // var data = [
+    // { x: 0, y: 10, },
+    // { x: 1, y: 15, },
+    // { x: 2, y: 35, },
+    // { x: 3, y: 20, },];
+ 
+
+// NUMBER OF DIVISIONS
+ var dataXpts= 5; var dataYpts= 100;    
+ 
+
+ var data = d3.range(dataXpts).map(function(d,i) { return {"y": inUrEngData[i], "x": 2012+i } });   
+    
+    console.log(data);
+    
+    console.log(inUrEngData);
+    console.log(inUrEngData[0].eleRural2012);
+    
+    
+var margin = {top: 20, right: 20, bottom: 40, left: 50},
+    width = 575 - margin.left - margin.right,
+    height = 350 - margin.top - margin.bottom;
+    
+ 
+// // SCALE (VALUE OF 1 DIVISION)
+// var xScale = d3.scale.linear().domain([0, dataXpts]).range([0, 500]);
+// var yScale = d3.scale.linear().domain([0,dataYpts]).range([200,0]);
+
+// var x = d3.scale.linear()
+//     .domain([0, d3.max(data, function(d) { return d.x; })])
+//     .range([0, width]);
+
+var x = d3.scaleLinear()
+    .domain([2012, d3.max(data, function(d) { return d.x; })])
+    .range([0, width]);
+
+// var y = d3.scale.linear()
+//     .domain([0, d3.max(data, function(d) { return d.y; })])
+//     .range([height, 0]);
+    
+var y = d3.scaleLinear()
+    .domain([0, 100])
+    .range([height, 0]);
+
+
+// var xAxis = d3.svg.axis()
+//     .scale(x)
+//     .orient("bottom");
+    
+// var yAxis = d3.svg.axis()
+//     .scale(y)
+//     .orient("left");
+
+var xAxis = d3.axisBottom(x)
+            .tickValues([2012,2013,2014,2015,2016]); // figure out why it's far off
+    
+var yAxis = d3.axisLeft(y);
+    
+var area = d3.area()
+    .x(function(d) { return x(d.x); })
+    .y0(height)
+    .y1(function(d) { return y(d.y); });
+    
+    
+var svg =  d3.select("#overlay").append("svg").attr('id','area')
+    .attr("width", window.innerWidth/2).attr("height", window.innerHeight)
+    .attr("transform","translate(" + (window.innerWidth/2)+ ",0)").append('g');
+    
+svg.append("path")
+    .datum(data)
+    .attr("class", "area")
+    .attr("d", area);
+    
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+    
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+    
+    
+    
+  }
+  
+  
