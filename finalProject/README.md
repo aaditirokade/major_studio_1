@@ -1,7 +1,7 @@
 Datasets:
 
-### **Title:**
-Exploring possible connection between the gap in access to electricity, population distribution and net migration for African countries. 
+### **Title**
+Exploring possible connection between the gap in access to electricity, population distribution and net migration trends for African countries 
 
 ### **Description**
 
