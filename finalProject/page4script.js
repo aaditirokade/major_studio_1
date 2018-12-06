@@ -8,7 +8,7 @@
                 label.append('text').attr('x','51%').attr('y','60%').attr('class','leftlabel').text('NET MIGRATION ').style('fill','white').style('font-size','14px')
                 label.append('text').attr('x','78%').attr('y','60%').attr('class','rightlabel').text('% POPULATION GAP').style('fill','white').style('font-size','14px')
                 
-                label.append('a').attr("xlink:href", " https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/index.html")
+                label.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/index.html")
                     .append('text').attr('x','5%').attr('y','10%').text('HOME').attr('fill','#efefef')
                      .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
 
