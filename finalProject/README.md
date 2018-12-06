@@ -22,8 +22,8 @@ Title:  World Economic Outlook Database
 Release date: April 2017
 Electronic Location or Identifier: https://www.gfmag.com/global-data/economic-data/countries-highest-gdp-growth-2017
 
-Research references: [Quality of Life Survey III 2013-2014](https://www.datafirst.uct.ac.za/dataportal/index.php/catalog/594) .
-[Quality of Life Survey IV 2015-2016](https://www.datafirst.uct.ac.za/dataportal/index.php/catalog/595)
-.
-[South Africa - Internal Migration in South Africa 1999-2000](http://microdata.worldbank.org/index.php/catalog/1270)
-.[Recent Trends](https://www.researchgate.net/publication/237520615_Recent_trends_in_rural-urban_and_urban-rural_migration_in_Sub-Saharan_Africa_the_empirical_evidence_and_implications_for_understanding_livelihood_insecurity)
+Research references:
+- [Quality of Life Survey III 2013-2014](https://www.datafirst.uct.ac.za/dataportal/index.php/catalog/594)
+- [Quality of Life Survey IV 2015-2016](https://www.datafirst.uct.ac.za/dataportal/index.php/catalog/595)
+- [South Africa - Internal Migration in South Africa 1999-2000](http://microdata.worldbank.org/index.php/catalog/1270)
+- [Recent Trends](https://www.researchgate.net/publication/237520615_Recent_trends_in_rural-urban_and_urban-rural_migration_in_Sub-Saharan_Africa_the_empirical_evidence_and_implications_for_understanding_livelihood_insecurity)
