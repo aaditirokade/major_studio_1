@@ -10,7 +10,7 @@ At least 110 million of the 600 million people are still living without access t
 
 1. Energy
 
-Source: The World Bank, International Energy Agency, and the Energy Sector Management Assistance Program.
+Source: The World Bank, International Energy Agency, and the Energy Sector Management Assistance Program
 Title:  Sustainable Energy for All ( SE4ALL )
 Release date: December 20, 2013
 Last Updated: June 29, 2018
@@ -20,7 +20,6 @@ Electronic Location or Identifier: https://datacatalog.worldbank.org/dataset/sus
 
 Source: The World Bank
 Title:  Urban population, Rural population
-Release date: 
 Electronic Location or Identifier: https://data.worldbank.org/indicator/SP.URB.TOTL , https://data.worldbank.org/indicator/SP.RUR.TOTL
 
 3. Net Migration
