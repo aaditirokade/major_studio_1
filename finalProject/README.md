@@ -1,6 +1,6 @@
 
 ### **Title**
-Exploring possible connection between access to electricity, the population gap in rural and urban Africa and net migration trends for African countries 
+Exploring possible connection between access to electricity, the population gap in rural and urban Africa and net migration (per 1,000 population) for African countries by observing trends in 2012-16
 
 ### **Description**
 
