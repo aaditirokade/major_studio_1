@@ -24,12 +24,11 @@ Title:  Urban population, Rural population
 Release date: 
 Electronic Location or Identifier: https://data.worldbank.org/indicator/SP.URB.TOTL , https://data.worldbank.org/indicator/SP.RUR.TOTL
 
-3. Net Migration rate
+3. Net Migration
 
-Source: International Monetary Fund
-Title:  World Economic Outlook Database
-Release date: April 2017
-Electronic Location or Identifier: https://www.gfmag.com/global-data/economic-data/countries-highest-gdp-growth-2017
+Source: The World Bank
+Electronic Location or Identifier: http://databank.worldbank.org/data/reports.aspx?source=2&series=SM.POP.NETM&country=
+
 
 ### **References**
 
