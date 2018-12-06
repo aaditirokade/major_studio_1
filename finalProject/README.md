@@ -1,11 +1,10 @@
 
 ### **Title**
-Exploring possible connection between access to electricity, the population gap in rural and urban Africa and net migration (per 1,000 population) for African countries by observing trends in 2012-16
+Exploring connections and trends in access to electricity, net migration and pupulation for Africa (2012-16)
 
 ### **Description**
 
-As pointed out in the survey conducted for South Africa in 2013-16, one of the factors affecting the internal migration in Africa is gap between access to electricity in rural and urban Africa. Since net migration could be an effect of various causes, this project is aimed at studying the possible connections and trends between the the net migration, access to electricity and population gap between rural and urban Africa (2012-2016). At least 110 million of the 600 million people are still living without access to electricity in Africa live in urban areas. The quality of life is affected by access to electricity and it could be one major causes of net migration.
-
+At least 110 million of the 600 million people are still living without access to electricity in Africa live in urban areas. Access to electricity contributes to the quality of life. This project visualizes the possible connections and trends between the net migration, access to electricity and population. It also visualizes the trends in access to electricity and population distribution for urban and rural Africa.
 
 ### **Sources**
 
