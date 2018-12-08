@@ -14,18 +14,20 @@ Source: The World Bank, International Energy Agency, and the Energy Sector Manag
 Title:  Sustainable Energy for All ( SE4ALL )
 Release date: December 20, 2013
 Last Updated: June 29, 2018
-Electronic Location or Identifier: https://datacatalog.worldbank.org/dataset/sustainable-energy-all
+Electronic Location: https://datacatalog.worldbank.org/dataset/sustainable-energy-all
 
 2. Population
 
 Source: The World Bank
 Title:  Urban population, Rural population
-Electronic Location or Identifier: https://data.worldbank.org/indicator/SP.URB.TOTL , https://data.worldbank.org/indicator/SP.RUR.TOTL
+Electronic Location: https://data.worldbank.org/indicator/SP.URB.TOTL , https://data.worldbank.org/indicator/SP.RUR.TOTL
 
 3. Net Migration
 
-Source: The World Bank
-Electronic Location or Identifier: http://databank.worldbank.org/data/reports.aspx?source=2&series=SM.POP.NETM&country=
+Source: AFDB Socio Economic Database, 1960-2019 (African Development Bank Group
+Frequency: Annual
+Publication date: Monday, 05 February 2018
+Electronic Location: http://dataportal.opendataforafrica.org/search?query=net%20migration&source=HomePage
 
 
 ### **References**
