@@ -1,6 +1,7 @@
             body{
             background: #1D1E20;
-            /*margin-top:20px;*/
+            font-family: Lato, Helvetica nueu, arial, sans-serif;
+
             }
             
             #header{
@@ -78,13 +79,22 @@
             font-size: 14px;
         }
         
-        #rubtn4:hover , #urbtn4:hover{
+        #rubtn4:hover, #urbtn4:hover  {
             background: #efefef;
             opacity: 0.8;
             color: black;
             font-weight: bold;
             border-color: transparent;
         }
+        
+         #rubtn4:active , #urbtn4:active {
+             
+            background: #efefef;
+            opacity: 0.8;
+            color: black;
+            font-weight: bold;
+            border-color: transparent;
+         }
         
            .leftlabel{
                 z-index:1;

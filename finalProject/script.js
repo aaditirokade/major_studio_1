@@ -1,4 +1,6 @@
 
+// MAIN SKETCH : INDEX HTML 
+
   // GET BOTH DATA FILES
   d3.json('africa.geo.json').then((geojson) => {
         d3.json('data/allENERGYData.json').then((eng) => {
@@ -52,25 +54,22 @@
                 .attr("fill-opacity", 0.2)
                 .on('mouseover', function(d) {
                     
-                   d3.select(this).attr("fill", "#11a9cc")
-                   d3.select(this).attr("fill-opacity", 0.5);
-                        
-                       
-                 
-                        // FILTER    
+                    // FILTER    
                        var filteredPop = pop.filter((singleEng) => {
                             var ct = d.properties.name;
                             return singleEng.countryName === ct;
                         });
-                     
-                        // console.log(filteredPop[0]);
-                        
+     
+                   d3.select(this).attr("fill", "#11a9cc")
+                   d3.select(this).attr("fill-opacity", 0.5)
+  
                         // TOOLTIP
                         div.transition().duration(150).style("opacity", 1).style("visibility", 'visible');
                         
-                        var text = d.properties.name.toUpperCase()+'\n'+(filteredPop[0].ppur2016).toFixed(2)+' % <br>';
-                        text += 'world';
-                        div.html(text)
+                        // var text = d.properties.name.toUpperCase()+'\n'+(filteredPop[0].ppur2016).toFixed(2)+' % <br>';
+                        // text += 'world';
+                        
+                            div.html( filteredPop[0].countryName.toUpperCase() + '<br> RURAL : '+ filteredPop[0].pru2016 + '<br>URBAN : '+ filteredPop[0].pur2016)
                            .style("left", (d3.event.pageX) + "px").style("top", (d3.event.pageY - 28) + "px");
                 })
                 .on('click', function(e, i) {
@@ -90,6 +89,8 @@
                     d3.select(this).attr("fill", "lightgray");
                     d3.select(this).attr("fill-opacity", 0.2);
                     //d3.select("#hover").text()
+                    
+                    div.transition().duration(150).style("opacity", 1).style("visibility", 'hidden');
                     
                 })
                 .on('mousemove', function(d) {
@@ -116,11 +117,11 @@
         	}
   
         
-        // MAP1 TOGGLE BUTTONS
-        var urbanButton = d3.select("#map").append('button').attr('id','urbtn1').text('URBAN')
-        urbanButton.on('click', function() { console.log('here here'); })
-        var ruralButton = d3.select("#map").append('button').attr('id','rubtn1').text('RURAL')
-        ruralButton.on('click', function() { console.log('here here'); })
+        // // MAP1 TOGGLE BUTTONS
+        // var urbanButton = d3.select("#map").append('button').attr('id','urbtn1').text('URBAN')
+        // urbanButton.on('click', function() { console.log('here here'); })
+        // var ruralButton = d3.select("#map").append('button').attr('id','rubtn1').text('RURAL')
+        // ruralButton.on('click', function() { console.log('here here'); })
         
         
         d3.select("#map").append('text').attr('id','label1')
@@ -128,11 +129,11 @@
                 .style("font-size", 18).style("fill", "white").style("font-weight", 'bold');
                 
         d3.select("#map2").append('text').attr('id','label2')
-                .text('% ACCESS TO ENERGY : 2016').attr("font-family", "sans-serif")
+                .text('% ACCESS TO ELECTRICITY : 2016').attr("font-family", "sans-serif")
                 .style("font-size", 18).style("fill", "white").style("font-weight", 'bold');
   
   
-      // MAP2
+      // ***********************  MAP2 ****************************
       
             let map2 = new mapboxgl.Map({
                 container: 'map2',
@@ -184,15 +185,11 @@
                             return singleEng.countryName === ct;
                         });
                         
-                    console.log(filteredEng[0]);
                
                     // TOOLTIP
-                    div.transition()		
-                        .duration(150)		
-                        .style("opacity", 1)
-                        .style("visibility", 'visible');
+                    div.transition().duration(150).style("opacity", 1).style("visibility", 'visible');
                         
-                        div.html(d.properties.name.toUpperCase()+"\r\n"+(filteredEng[0].eleUrban2016).toFixed(2)+' %')	
+                        div.html(d.properties.name.toUpperCase()+"<br> URBAN : "+ filteredEng[0].eleUrban2016.toFixed(2) +' %'+"<br> RURAL : " + filteredEng[0].eleRural2016.toFixed(2)+' %'+"<br> TOTAL : " + filteredEng[0].eleTotal2016.toFixed(2))	
                           .style("left", (d3.event.pageX) + "px")		
                           .style("top", (d3.event.pageY - 28) + "px");
                 })
@@ -210,6 +207,8 @@
                 .on('mouseout', function() {
                     d3.select(this).attr("fill", "lightgray");
                     d3.select(this).attr("fill-opacity", 0.2);
+                div.transition().duration(150).style("opacity", 1).style("visibility", 'hidden');
+
                 })
                 .on('mousemove', function(d) {
                     d3.select("#hover2")
@@ -248,12 +247,12 @@
         	}
       
           
-        var urbanButton2 = d3.select("#map2").append('button').attr('id','urbtn2').text('URBAN')
-            urbanButton2.on('click', function() { console.log('here here'); })
+        // var urbanButton2 = d3.select("#map2").append('button').attr('id','urbtn2').text('URBAN')
+        //     urbanButton2.on('click', function() { console.log('here here'); })
         
         
-        var ruralButton2 = d3.select("#map2").append('button').attr('id','rubtn2').text('RURAL')
-            ruralButton2.on('click', function() { console.log('here here'); })
+        // var ruralButton2 = d3.select("#map2").append('button').attr('id','rubtn2').text('RURAL')
+        //     ruralButton2.on('click', function() { console.log('here here'); })
           
        }); 
   });

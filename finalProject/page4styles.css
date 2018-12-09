@@ -1,10 +1,11 @@
             body{
             background: #1D1E20;
+            font-family: Lato, Helvetica nueu, arial, sans-serif;
             /*margin-top:20px;*/
             }
             
             #header{
-                position:fixed;
+                position: fixed;
                 top:0%;
                 left:0%;
                 background: white;
@@ -13,14 +14,20 @@
                 height: 10%;
             }
             
+            #keep.svg{
+                position: fixed;
+            }
+            
             div.heading2{
-                margin-top:25px;
+                /*position: absolute;*/
+                margin-top:30px;
                 margin-left:5%;
                 font-family: Lato;
                 color: #efefef;
                 font-weight: 500;
                 font-size: 12;
                 text-align: center;
+                text-transform: uppercase;
             }
             
             text.labels{
@@ -101,4 +108,15 @@
                 font-size: 12;
             }
            
+           .conclusion{
+               bottom: 0;
+               top: 80%;
+               font-family: Lato, Helvetica nueu, arial, sans-serif;
+               font-size: 18px;
+           }
            
+           .subLabel{
+               font-size: 12px;
+               font-family: Lato, Helvetica nueu, arial, sans-serif;
+           }
+       

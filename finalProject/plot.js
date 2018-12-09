@@ -1,12 +1,24 @@
+
+// ACCESS TO ELECTRICITY : // 2012: #ffe168, 2013: #fbcb43, 2014: #f4b400, 2015: #eca403, 2016: #e49307
+// POPULATION : // 2012: #94d8e8, 2013: #4dbfd9, 2014: #11a9cc, 2015: #15a0d9, 2016: #1c91d0
+// NET MIGRATION: // F2A181, EE8D71, EC735C, EE6B56, EC5750  
+
+
+
 function plot(country){
 
 document.getElementById("overlay").style.visibility = "visible";
+    //   document.getElementById('linePlot').style.visibility = "hidden";
+
       
  var ruEngData = [];
  var ruPopData = [];
  
  var urEngData = [];
  var urPopData = [];
+ 
+ var migData = [];
+ var popGapData = [];
  
  var countryName;
  
@@ -16,7 +28,7 @@ document.getElementById("overlay").style.visibility = "visible";
          d3.json('data/all_MigData.json').then((mig) => {
      
 
-      console.log(mig) ; 
+    //   console.log(mig) ; 
      
      for(var i=0;i<eng.length;i++){
         if (eng[i].countryCode === country){
@@ -51,15 +63,32 @@ document.getElementById("overlay").style.visibility = "visible";
             if(pop[i].ppur2016==='NA'){pop[i].ppur2016=0;}urPopData.push(pop[i].ppur2016);
            
             countryName = eng[i].countryName;
+            
+            // % NET MIGRATION
+            if(mig[i].mig2012==='NA'){mig[i].mig2012=0;}migData.push(mig[i].mig2012*10);
+            if(mig[i].mig2013==='NA'){mig[i].mig2013=0;}migData.push(mig[i].mig2013*10);
+            if(mig[i].mig2014==='NA'){mig[i].mig2014=0;}migData.push(mig[i].mig2014*10);
+            if(mig[i].mig2015==='NA'){mig[i].mig2015=0;}migData.push(mig[i].mig2015*10);
+            if(mig[i].mig2016==='NA'){mig[i].mig2016=0;}migData.push(mig[i].mig2016*10); 
+            
+            // % POPULATION GAP
+            if(pop[i].ppur2012==='NA'){pop[i].ppur2012=0;} if(pop[i].ppru2012==='NA'){pop[i].ppru2012=0;} var num1 = (pop[i].ppur2012 - pop[i].ppru2012); if(num1<0)num1=-1*num1; popGapData.push(num1);
+            if(pop[i].ppur2013==='NA'){pop[i].ppur2013=0;} if(pop[i].ppru2012==='NA'){pop[i].ppru2013=0;} var num1 = (pop[i].ppur2013 - pop[i].ppru2013); if(num1<0)num1=-1*num1; popGapData.push(num1);
+            if(pop[i].ppur2014==='NA'){pop[i].ppur2014=0;} if(pop[i].ppru2012==='NA'){pop[i].ppru2014=0;} var num1 = (pop[i].ppur2014 - pop[i].ppru2014); if(num1<0)num1=-1*num1; popGapData.push(num1);
+            if(pop[i].ppur2015==='NA'){pop[i].ppur2015=0;} if(pop[i].ppru2012==='NA'){pop[i].ppru2015=0;} var num1 = (pop[i].ppur2015 - pop[i].ppru2015); if(num1<0)num1=-1*num1; popGapData.push(num1);
+            if(pop[i].ppur2016==='NA'){pop[i].ppur2016=0;} if(pop[i].ppru2012==='NA'){pop[i].ppru2016=0;} var num1 = (pop[i].ppur2016 - pop[i].ppru2016); if(num1<0)num1=-1*num1; popGapData.push(num1);
+            
+            
         }
      }
     
 
+
      //plotAxis1(eng);
-     plotAxis(urEngData, urPopData, ruEngData, ruPopData, countryName);
+    //  plotAxis(urEngData, urPopData, ruEngData, ruPopData, countryName, migData, popGapData);
      
      // AREA
-     areaPlot(urEngData, urPopData, ruEngData, ruPopData, countryName);
+     areaPlot(urEngData, urPopData, ruEngData, ruPopData, countryName, migData, popGapData);
     //plotAxis1(ruEngData, ruPopData, countryName);
 });
 });
@@ -67,7 +96,7 @@ document.getElementById("overlay").style.visibility = "visible";
 
 
 // function plotAxis(eng12, eng13, eng14, eng15, eng16){
-function plotAxis(inUrEngData, inUrPopData, inRuEngData, inRuPopData, name){
+function plotAxis(inUrEngData, inUrPopData, inRuEngData, inRuPopData, name, inMigData, inPopGapData){
     
 
 // NUMBER OF DIVISIONS
@@ -90,6 +119,11 @@ var urPopData = d3.range(dataXpts).map(function(d,i) { return {"y": inUrPopData[
 var ruEngData = d3.range(dataXpts).map(function(d,i) { return {"y": inRuEngData[i] } });
 var ruPopData = d3.range(dataXpts).map(function(d,i) { return {"y": inRuPopData[i] } });
 
+var migData = d3.range(dataXpts).map(function(d,i) { return {"y": inMigData[i] } });
+var popGapData = d3.range(dataXpts).map(function(d,i) { return {"y": inPopGapData[i] } });
+
+
+
 
 var svg3 = d3.select("#overlay").append("svg").attr('id','linePlot')                              
     .attr("width", window.innerWidth/2).attr("height", '1500px')
@@ -101,17 +135,16 @@ var svg3 = d3.select("#overlay").append("svg").attr('id','linePlot')
                   .attr('width', window.innerWidth/2).attr('height', '1500px')
                   .style('fill','#1D1E20')
 
-  
 
     // TITLE OVERLAY
     svg3.append('text').attr('id','label3')
       .attr('x','12%').attr('y','60')
-      .text('% ACCESS TO ELECTRICITY & % POPULATION : 2012-16').attr('fill','#efefef')
-      .style("font-size", "14px").style("font-family", "Lato")
+      .text('TRENDS IN ACCESS TO ELECTRICITY, NET MIGRATION RATE & PUPULATION DISTRIBUTION').attr('fill','#efefef')
+      .style("font-size", "18px").style("font-family", "Lato")
       
       
     // VIEW ALL LINK   
-    svg3.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html")
+    svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
       .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','#efefef')
       .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
       
@@ -183,14 +216,14 @@ svg3.append("path").datum(urPopData).attr("class", "line2").attr("d", line).attr
 svg3.selectAll(".dot").data(urEngData).enter().append("circle").attr("class", "dot")
     .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
     .attr("r", 3).attr("transform", "translate(160,170)")
-    .on("mouseover", function(a, b, c){console.log(a); })
+    .on("mouseover", function(a, b, c){ })
     .on("mouseout", function() {  });
 
 // POP DATAPOINT CIRCLES
 svg3.selectAll(".dot2").data(urPopData).enter().append("circle").attr("class", "dot2")
     .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
     .attr("r", 3).attr("transform", "translate(160,170)")
-    .on("mouseover", function(a, b, c){ console.log(a); })
+    .on("mouseover", function(a, b, c){ })
 	.on("mouseout", function(){  });
 	   
  
@@ -223,13 +256,13 @@ xlabels.append('text').attr('x','140').attr('y',400+diff).text('2012'); xlabels.
 xlabels.append('text').attr('x','340').attr('y',400+diff).text('2014'); xlabels.append('text').attr('x','440').attr('y',400+diff).text('2015'); 
 xlabels.append('text').attr('x','540').attr('y',400+diff).text('2016');
 
-// GDP SVG
+// // GDP SVG
 
-svg3.append('svg:image').attr("xlink:href", "same.svg").attr("x", 183).attr("y", 90+diff).attr('width',10)
-svg3.append('svg:image').attr("xlink:href", "down.svg").attr("x", 283).attr("y", 90+diff).attr('width',15)
-svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 383).attr("y", 90+diff).attr('width',15)
-svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 483).attr("y", 90+diff).attr('width',15)
-svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 583).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "same.svg").attr("x", 183).attr("y", 90+diff).attr('width',10)
+// svg3.append('svg:image').attr("xlink:href", "down.svg").attr("x", 283).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 383).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 483).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 583).attr("y", 90+diff).attr('width',15)
 
 // Y-AXIS
 svg3.append("g").attr("class", "yAxis").attr("transform", `translate(160,${170+diff})`)
@@ -245,14 +278,14 @@ svg3.append("path").datum(ruPopData).attr("class", "line2").attr("d", line).attr
 svg3.selectAll(".dot3").data(ruEngData).enter().append("circle").attr("class", "dot3")
     .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
     .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
-    .on("mouseover", function(a, b, c){console.log(a); })
+    .on("mouseover", function(a, b, c){ })
     .on("mouseout", function() {  });
 
 // POP DATAPOINT CIRCLES
 svg3.selectAll(".dot4").data(ruPopData).enter().append("circle").attr("class", "dot4")
     .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
     .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
-    .on("mouseover", function(a, b, c){ console.log(a); })
+    .on("mouseover", function(a, b, c){  })
 	.on("mouseout", function(){  });
 
 
@@ -298,13 +331,13 @@ xlabels3.append('text').attr('x','340').attr('y',400+diff).text('2014');
 xlabels3.append('text').attr('x','440').attr('y',400+diff).text('2015'); 
 xlabels3.append('text').attr('x','540').attr('y',400+diff).text('2016');
 
-// GDP SVG
+// // GDP SVG
 
-svg3.append('svg:image').attr("xlink:href", "same.svg").attr("x", 183).attr("y", 90+diff).attr('width',10)
-svg3.append('svg:image').attr("xlink:href", "down.svg").attr("x", 283).attr("y", 90+diff).attr('width',15)
-svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 383).attr("y", 90+diff).attr('width',15)
-svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 483).attr("y", 90+diff).attr('width',15)
-svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 583).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "same.svg").attr("x", 183).attr("y", 90+diff).attr('width',10)
+// svg3.append('svg:image').attr("xlink:href", "down.svg").attr("x", 283).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 383).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 483).attr("y", 90+diff).attr('width',15)
+// svg3.append('svg:image').attr("xlink:href", "up.svg").attr("x", 583).attr("y", 90+diff).attr('width',15)
 
 // Y-AXIS
 svg3.append("g").attr("class", "yAxis").attr("transform", `translate(160,${170+diff})`)
@@ -312,120 +345,209 @@ svg3.append("g").attr("class", "yAxis").attr("transform", `translate(160,${170+d
     
 // PATHS
 // ***LINE GENERATOR : the shape of an SVG Path element is defined by one attribute: d
+svg3.append("path").datum(migData).attr("class", "line3").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
+svg3.append("path").datum(popGapData).attr("class", "line2").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
 svg3.append("path").datum(ruEngData).attr("class", "line1").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
-svg3.append("path").datum(ruPopData).attr("class", "line2").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
+svg3.append("path").datum(urEngData).attr("class", "line1").attr("d", line).attr("transform",`translate(160,${170+diff})`).style('stroke-width','2px');
 
 
 // ENG DATAPOINT CIRCLES
-svg3.selectAll(".dot3").data(ruEngData).enter().append("circle").attr("class", "dot3")
+svg3.selectAll(".dot3").data(migData).enter().append("circle").attr("class", "dot3")
     .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
     .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
-    .on("mouseover", function(a, b, c){console.log(a); })
+    .on("mouseover", function(a, b, c){})
     .on("mouseout", function() {  });
 
 // POP DATAPOINT CIRCLES
-svg3.selectAll(".dot4").data(ruPopData).enter().append("circle").attr("class", "dot4")
+svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", "dot4")
     .attr("cx", function(d, i) { return xScale(i) }).attr("cy", function(d,i) { return yScale(d.y) })
     .attr("r", 3).attr("transform",`translate(160,${170+diff})`)
-    .on("mouseover", function(a, b, c){ console.log(a); })
+    .on("mouseover", function(a, b, c){  })
 	.on("mouseout", function(){  });
     }
 
   }
   
-  
-  
+ 
   
 // ******** AREA PLOT ************
 
-  function areaPlot(inUrEngData, inUrPopData, inRuEngData, inRuPopData, name){
-      document.getElementById('area').style.visibility = "hidden";
-      //document.getElementById('linePlot').style.visibility = "hidden";
+  function areaPlot(inUrEngData, inUrPopData, inRuEngData, inRuPopData, name, inMigData, inPopGapData){
       
-    // var data = [
-    // { x: 0, y: 10, },
-    // { x: 1, y: 15, },
-    // { x: 2, y: 35, },
-    // { x: 3, y: 20, },];
- 
+      
+      // HIDE LINEPLOT , SHOW AREA PLOT
+      //document.getElementById('area').style.visibility = "hidden";
+    //   document.getElementById('linePlot').style.visibility = "hidden";
+    
+    d3.selectAll('g').remove();
+      
+      
+      // ******** URBAN ************
+      
 
-// NUMBER OF DIVISIONS
- var dataXpts= 5; var dataYpts= 100;    
- 
+                // NO. OF DIVISIONS & DATA
+                var dataXpts= 5; var dataYpts= 100;    
+                var data = d3.range(dataXpts).map(function(d,i) { return {"y": inUrEngData[i], "x": 2012+i } });   
+                var data11 = d3.range(dataXpts).map(function(d,i) { return {"y": inUrPopData[i], "x": 2012+i } });
+              
+                // MARGIN
+                const margin = 10; const width = 450-2*margin; const height = 200-2*margin;
+                
+                // SCALES
+                const xScale = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data, function(d) { return d.x; })]);
+                const xScale11 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data11, function(d) { return d.x; })]);
 
- var data = d3.range(dataXpts).map(function(d,i) { return {"y": inUrEngData[i], "x": 2012+i } });   
-    
-    console.log(data);
-    
-    console.log(inUrEngData);
-    console.log(inUrEngData[0].eleRural2012);
-    
-    
-var margin = {top: 20, right: 20, bottom: 40, left: 50},
-    width = 575 - margin.left - margin.right,
-    height = 350 - margin.top - margin.bottom;
-    
- 
-// // SCALE (VALUE OF 1 DIVISION)
-// var xScale = d3.scale.linear().domain([0, dataXpts]).range([0, 500]);
-// var yScale = d3.scale.linear().domain([0,dataYpts]).range([200,0]);
+                
+                const yScale = d3.scaleLinear().range([height, 0]).domain([0, 100]);
+               
+                // TICK VALUES, FORMAT
+                var formatxAxis = d3.format('.0f');
+                var xAxis = d3.axisBottom(xScale).tickValues([2012,2013,2014,2015,2016]).tickFormat(formatxAxis);
+                var yAxis = d3.axisLeft(yScale).tickValues([10,20,30,40,50,60,70,80,90,100]).tickFormat(formatxAxis);
+                
+                // AREA
+                var area = d3.area() .x(function(d){ return xScale(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
+                var area11 = d3.area() .x(function(d){ return xScale11(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
 
-// var x = d3.scale.linear()
-//     .domain([0, d3.max(data, function(d) { return d.x; })])
-//     .range([0, width]);
+                // SVG
+                var svg =  d3.select("#overlay").append("svg").attr('id','areasvg')
+                    .attr("width", window.innerWidth/2).attr("height", '1000px')
+                    .attr("transform","translate(" + (window.innerWidth/2)+ ",0)")
+                    
+                    
+                // TITLE OVERLAY
+                svg.append('text').attr('id','label3')
+                  .attr('x','7%').attr('y','50')
+                  .text('TRENDS IN ACCESS TO ELECTRICITY, NET MIGRATION RATE & PUPULATION DISTRIBUTION').attr('fill','#efefef')
+                  .style("font-size", "12px").style("font-family", "Lato")
+      
+      
+                // VIEW ALL LINK   
+                svg.append('g').append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
+                  .append('text').attr('x','600').attr('y','80').text('VIEW ALL').attr('fill','#efefef')
+                  .style('font-weight','bold').style('text-decoration','underline').style("font-size", "10px").style("font-family", "Lato")
+      
 
-var x = d3.scaleLinear()
-    .domain([2012, d3.max(data, function(d) { return d.x; })])
-    .range([0, width]);
+                // COUNTRY NAME
+               svg.append('g').append('text').attr('x','320').attr('y','100')
+                  .text(name).attr('fill','#efefef').style("font-size", "16px")
+                    
+                
+                var yh = 150;
+                
+                // CHART CONTAINER
+                var chart = svg.append('g').attr('id','chart').attr("transform","translate(140,"+ yh +")")
 
-// var y = d3.scale.linear()
-//     .domain([0, d3.max(data, function(d) { return d.y; })])
-//     .range([height, 0]);
-    
-var y = d3.scaleLinear()
-    .domain([0, 100])
-    .range([height, 0]);
+                // GRIDS
+                // chart.append('g').attr('class', 'grid').attr('transform', `translate(0, ${height})`).call(d3.axisBottom().scale(xScale).tickSize(-height, 0, 0).tickFormat(''))
+                chart.append('g').attr('class', 'grid').call(d3.axisLeft().scale(yScale).tickSize(-width, 0, 0).tickFormat('')).attr('stroke','darkgray')
+                
+                // PATH
+                chart.append("path").datum(data).attr("class", "area").attr("d", area).attr('stroke','#e49307');
+                chart.append("path").datum(data11).attr("class", "area2").attr("d", area).attr('stroke','#1c91d0');
+
+                // AXES
+                chart.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+                chart.append("g").attr("class", "y axis").call(yAxis);
+                 
+                // AXES LABELS    
+                svg.append('g').append('text').attr('class', 'label').attr('x', -(yh+70)).attr('y',100).attr('transform', 'rotate(-90)').attr('text-anchor', 'middle').text('% VALUE : URBAN')
+                // svg.append('text').attr('class', 'label').attr('x',370).attr('y', 300).attr('text-anchor', 'middle').text('YEARS')
+                  
+                    
+     
+     // ******** RURAL ************
+      
+                var yhh = yh+300
+                
+                // NO. OF DIVISIONS & DATA
+                var data2 = d3.range(dataXpts).map(function(d,i) { return {"y": inRuEngData[i], "x": 2012+i } }); 
+                var data21 = d3.range(dataXpts).map(function(d,i) { return {"y": inRuPopData[i], "x": 2012+i } });
+                
+                // SCALES
+                const xScale2 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data2, function(d) { return d.x; })]);
+                const xScale21 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data21, function(d) { return d.x; })]);
+
+                // AREA
+                var area2 = d3.area().x(function(d){ return xScale2(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
+                var area21 = d3.area().x(function(d){ return xScale21(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
+
+               // CHART CONTAINER
+                var chart2 = svg.append('g').attr('id','chart2').attr("transform","translate(140,"+ yhh +")")
+                
+                // GRIDS
+                // chart.append('g').attr('class', 'grid').attr('transform', `translate(0, ${height})`).call(d3.axisBottom().scale(xScale).tickSize(-height, 0, 0).tickFormat(''))
+                chart2.append('g').attr('class', 'grid').call(d3.axisLeft().scale(yScale).tickSize(-width, 0, 0).tickFormat('')).attr('stroke','darkgray')
+                
+                // PATH
+                chart2.append("path").datum(data2).attr("class", "area").attr("d", area).attr('stroke','#e49307');
+                chart2.append("path").datum(data21).attr("class", "area2").attr("d", area).attr('stroke','#1c91d0');
+
+                // AXES
+                chart2.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+                chart2.append("g").attr("class", "y axis").call(yAxis);
+                 
+                // AXES LABELS    
+                svg.append('g').append('text').attr('class', 'label').attr('x', -(yhh+70)).attr('y',100).attr('transform', 'rotate(-90)').attr('text-anchor', 'middle').text('% VALUE : RURAL')
+                // svg.append('text').attr('class', 'label').attr('x',370).attr('y', 300).attr('text-anchor', 'middle').text('YEARS')                   
+                
+
+// ******** GAP IN ACCESS TO ELECTRICITY, POPULATION DISTRIBUTION, NET MIGRATION RATE ************
+
+                var yhhh = yhh +300;
+      
+                var diffEng =[];
+                var diffPop =[];
+                
+                
+                for(i=0;i<inUrEngData.length;i++){
+                    diffEng.push(inUrEngData[i]-inRuEngData[i]);
+                    diffPop.push(inUrPopData[i]-inRuPopData[i]);
+                }
+                // console.log(inRuPopData); console.log(inPopGapData);
+                
+                // NO. OF DIVISIONS & DATA
+                var data3 = d3.range(dataXpts).map(function(d,i) { return {"y": diffEng[i], "x": 2012+i } }); 
+                var data31 = d3.range(dataXpts).map(function(d,i) { return {"y": inPopGapData[i], "x": 2012+i } });
+                var data32 = d3.range(dataXpts).map(function(d,i) { return {"y": inMigData[i], "x": 2012+i } });
+
+                
+                // SCALES
+                const xScale3 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data3, function(d) { return d.x; })]);
+                const xScale31 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data31, function(d) { return d.x; })]);
+                const xScale32 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data32, function(d) { return d.x; })]);
+
+                
+                // AREA
+                var area31 = d3.area().x(function(d){ return xScale31(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
+                var area3 = d3.area().x(function(d){ return xScale3(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
+                var area32 = d3.area().x(function(d){ return xScale32(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
 
 
-// var xAxis = d3.svg.axis()
-//     .scale(x)
-//     .orient("bottom");
-    
-// var yAxis = d3.svg.axis()
-//     .scale(y)
-//     .orient("left");
+               // CHART CONTAINER
+                var chart3 = svg.append('g').attr('id','chart3').attr("transform","translate(140,"+ yhhh +")")
+                
+                // GRIDS
+                // chart.append('g').attr('class', 'grid').attr('transform', `translate(0, ${height})`).call(d3.axisBottom().scale(xScale).tickSize(-height, 0, 0).tickFormat(''))
+                chart3.append('g').attr('class', 'grid').call(d3.axisLeft().scale(yScale).tickSize(-width, 0, 0).tickFormat('')).attr('stroke','darkgray')
+                
+                // PATH
+                chart3.append("path").datum(data31).attr("class", "area2").attr("d", area).attr('stroke','#1c91d0');
+                chart3.append("path").datum(data3).attr("class", "area").attr("d", area).attr('stroke','#e49307');
+                chart3.append("path").datum(data32).attr("class", "area3").attr("d", area).attr('stroke','#EC5750');
 
-var xAxis = d3.axisBottom(x)
-            .tickValues([2012,2013,2014,2015,2016]); // figure out why it's far off
-    
-var yAxis = d3.axisLeft(y);
-    
-var area = d3.area()
-    .x(function(d) { return x(d.x); })
-    .y0(height)
-    .y1(function(d) { return y(d.y); });
-    
-    
-var svg =  d3.select("#overlay").append("svg").attr('id','area')
-    .attr("width", window.innerWidth/2).attr("height", window.innerHeight)
-    .attr("transform","translate(" + (window.innerWidth/2)+ ",0)").append('g');
-    
-svg.append("path")
-    .datum(data)
-    .attr("class", "area")
-    .attr("d", area);
-    
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-    
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
-    
-    
-    
-  }
+
+                // AXES
+                chart3.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+                chart3.append("g").attr("class", "y axis").call(yAxis);
+                 
+                // AXES LABELS    
+                svg.append('g').append('text').attr('class', 'label').attr('x',-(yhhh+70)).attr('y',100).attr('transform', 'rotate(-90)').attr('text-anchor', 'middle').text('% VALUE : GAP')
+                // svg.append('text').attr('class', 'label').attr('x',370).attr('y', 300).attr('text-anchor', 'middle').text('YEARS')                   
+                
+
+
+
+}
   
   

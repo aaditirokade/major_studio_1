@@ -3,6 +3,8 @@ body {
         	margin-left: 5px;
         	margin-right: 5px;
         	margin-bottom: 5px;
+        	font-family: Lato, Helvetica nueu, arial, sans-serif;
+
         }
         
         body#detail {
@@ -80,23 +82,26 @@ body {
             font-family: Lato;
             font-size: 16px;
             color: #efefef;
+            stroke-width: 2;
         }
-        
-        div.tooltip {	
-                position: fixed;			
-                text-align: left;
-                width: 150px;					
-                height: 15px;					
-                padding: 4px;
+   
+             
+             div.tooltip {	
+                position: absolute;	
+                text-align: center;
+                width: 130px;					
+                height: 60px;					
+                padding: 5px;
                 font: 12px sans-serif;
                 font-family: 'Lato', sans-serif;
                 font-weight: bold;
                 background: snow;	
                 border: 0px;		
-                border-radius: 3px;
+                border-radius: 2px;
                 line-height: 14px;
                 visibility: hidden;
                 color: 'black';
+                text-align: !important;
              }
              
         .line1 {
@@ -110,6 +115,13 @@ body {
             fill: none;
             /*stroke: blue;*/
             stroke: #1c91d0;
+            stroke-width: 1;
+            }
+            
+        .line3 {
+            fill: none;
+            stroke: blue;
+            stroke: #ec5750;
             stroke-width: 1;
             }
             
@@ -203,6 +215,8 @@ body {
             border-color: transparent;
         }
         
+        
+        
         .xlabels{
             color: white;
             stroke: white;
@@ -219,7 +233,48 @@ body {
             
         }
         
-        .area { fill: #4ca3bd; }
+          svg#areasvg { 
+         
+            fill: #e49307;
+            /*fill-opacity: 0.35;*/
+            height: 1000px;
+            text-align: center;
+            
+        }
+        
+        .area { 
+         
+            fill: #e49307;
+            fill-opacity: 0.35;
+            height:1000;
+            stroke-width: 2px;
+        }
+        
+        .area2 { 
+         
+            fill: #1c91d0;
+            fill-opacity: 0.35;
+            font-size: 10px;
+            stroke-width: 2px;
+            
+        }
+        
+        
+        .area3 { 
+         
+            fill: #EC5750;
+            fill-opacity: 0.35;
+            font-size: 10px;
+            stroke-width: 2px;
+            
+        }
+        
+        #chart{
+            position: absolute;
+            padding-left:60px;
+            top: 40%;
+            font-size: 10px;
+        }
         
         .axis path, .axis line {
   fill: none;
@@ -230,3 +285,44 @@ body {
 #linePlot{
     height:1500px;
 }
+
+.tick{
+    
+    color: #efefef;
+    font-size: smaller;
+
+}
+
+/*grid{*/
+/*    position:absolute;*/
+/*    z-index: 90;*/
+/*    stroke: #efefef 0.5;*/
+/*}*/
+
+.grid path {
+  stroke-width: 0;
+}
+
+.grid .tick line {
+  stroke: #9FAAAE;
+  stroke-opacity: 0.3;
+}
+
+text.label {
+  font-size: 12px;
+  font-weight: 400;
+  fill: #efefef;
+  font-size: 12px; 
+}
+
+/*.footer {*/
+/*   position: fixed;*/
+/*   left: 0;*/
+/*   bottom: 0;*/
+/*   width: 100%;*/
+/*   background-color: #111;*/
+/*   color: #efefef;*/
+   /*text-align: left;*/
+   /*padding-left: 25px;*/
+/*   z-index: 999999;*/
+/*}*/
