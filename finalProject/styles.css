@@ -237,7 +237,7 @@ body {
          
             fill: #e49307;
             /*fill-opacity: 0.35;*/
-            height: 1000px;
+            height: 1500px;
             text-align: center;
             
         }
@@ -246,7 +246,7 @@ body {
          
             fill: #e49307;
             fill-opacity: 0.35;
-            height:1000;
+            height:1500;
             stroke-width: 2px;
         }
         
@@ -313,6 +313,10 @@ text.label {
   font-weight: 400;
   fill: #efefef;
   font-size: 12px; 
+}
+
+text#countryName{
+    text-align: center;
 }
 
 /*.footer {*/

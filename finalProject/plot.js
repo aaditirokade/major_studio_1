@@ -139,12 +139,12 @@ var svg3 = d3.select("#overlay").append("svg").attr('id','linePlot')
     // TITLE OVERLAY
     svg3.append('text').attr('id','label3')
       .attr('x','12%').attr('y','60')
-      .text('TRENDS IN ACCESS TO ELECTRICITY, NET MIGRATION RATE & PUPULATION DISTRIBUTION').attr('fill','#efefef')
+      .text('TRENDS IN ACCESS TO ELECTRICITY, NET MIGRATION RATE & POPULATION DISTRIBUTION').attr('fill','#efefef')
       .style("font-size", "18px").style("font-family", "Lato")
       
       
     // VIEW ALL LINK   
-    svg3.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html")
+    svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
       .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','#efefef')
       .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
       
@@ -403,7 +403,7 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
                 // TICK VALUES, FORMAT
                 var formatxAxis = d3.format('.0f');
                 var xAxis = d3.axisBottom(xScale).tickValues([2012,2013,2014,2015,2016]).tickFormat(formatxAxis);
-                var yAxis = d3.axisLeft(yScale).tickValues([10,20,30,40,50,60,70,80,90,100]).tickFormat(formatxAxis);
+                var yAxis = d3.axisLeft(yScale).tickValues([0,10,20,30,40,50,60,70,80,90,100]).tickFormat(formatxAxis);
                 
                 // AREA
                 var area = d3.area() .x(function(d){ return xScale(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
@@ -418,7 +418,7 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
                 // TITLE OVERLAY
                 svg.append('text').attr('id','label3')
                   .attr('x','7%').attr('y','50')
-                  .text('TRENDS IN ACCESS TO ELECTRICITY, NET MIGRATION RATE & PUPULATION DISTRIBUTION').attr('fill','#efefef')
+                  .text('TRENDS IN ACCESS TO ELECTRICITY, NET MIGRATION RATE & POPULATION DISTRIBUTION').attr('fill','#efefef')
                   .style("font-size", "12px").style("font-family", "Lato")
       
       
@@ -429,8 +429,8 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
       
 
                 // COUNTRY NAME
-               svg.append('g').append('text').attr('x','320').attr('y','100')
-                  .text(name).attr('fill','#efefef').style("font-size", "16px")
+               svg.append('g').attr('id', 'countryName').append('text').attr('x','300').attr('y','100')
+                  .text(name).attr('fill','#efefef').style("font-size", "16px").style('text-align','center')
                     
                 
                 var yh = 150;
@@ -468,6 +468,7 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
                 const xScale2 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data2, function(d) { return d.x; })]);
                 const xScale21 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data21, function(d) { return d.x; })]);
 
+                
                 // AREA
                 var area2 = d3.area().x(function(d){ return xScale2(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
                 var area21 = d3.area().x(function(d){ return xScale21(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
@@ -517,11 +518,16 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
                 const xScale31 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data31, function(d) { return d.x; })]);
                 const xScale32 = d3.scaleLinear().range([0, width]).domain([2012, d3.max(data32, function(d) { return d.x; })]);
 
+                var xAxis1 = d3.axisBottom(xScale).tickValues([0,2013,2014,2015,2016]).tickFormat(formatxAxis);
+
+                const yScale3 = d3.scaleLinear().range([-height,0]).domain([0, -100]);
+                var yAxis3 = d3.axisLeft(yScale3).tickValues([-100,-90 ,-80, -70,-60,-50,-40,-30,-20,-10 ,0]).tickFormat(formatxAxis);
+
                 
                 // AREA
                 var area31 = d3.area().x(function(d){ return xScale31(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
                 var area3 = d3.area().x(function(d){ return xScale3(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
-                var area32 = d3.area().x(function(d){ return xScale32(d.x); }).y0(height).y1(function(d) { return yScale(d.y); });
+                var area32 = d3.area().x(function(d){ return xScale32(d.x); }).y0(height).y1(function(d) { return yScale3(d.y); });
 
 
                // CHART CONTAINER
@@ -530,7 +536,9 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
                 // GRIDS
                 // chart.append('g').attr('class', 'grid').attr('transform', `translate(0, ${height})`).call(d3.axisBottom().scale(xScale).tickSize(-height, 0, 0).tickFormat(''))
                 chart3.append('g').attr('class', 'grid').call(d3.axisLeft().scale(yScale).tickSize(-width, 0, 0).tickFormat('')).attr('stroke','darkgray')
-                
+                chart3.append('g').attr('class', 'grid').call(d3.axisLeft().scale(yScale3).tickSize(-width, 0, 0).tickFormat('')).attr('stroke','darkgray').attr("transform","translate(0,360)")
+               
+ 
                 // PATH
                 chart3.append("path").datum(data31).attr("class", "area2").attr("d", area).attr('stroke','#1c91d0');
                 chart3.append("path").datum(data3).attr("class", "area").attr("d", area).attr('stroke','#e49307');
@@ -538,13 +546,14 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
 
 
                 // AXES
-                chart3.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis);
+                chart3.append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call(xAxis1);
                 chart3.append("g").attr("class", "y axis").call(yAxis);
+                chart3.append("g").attr("class", "y axis").call(yAxis3).attr("transform","translate(0,360)");
+
                  
                 // AXES LABELS    
-                svg.append('g').append('text').attr('class', 'label').attr('x',-(yhhh+70)).attr('y',100).attr('transform', 'rotate(-90)').attr('text-anchor', 'middle').text('% VALUE : GAP')
-                // svg.append('text').attr('class', 'label').attr('x',370).attr('y', 300).attr('text-anchor', 'middle').text('YEARS')                   
-                
+                svg.append('g').append('text').attr('class', 'label').attr('x',-(yhhh+120)).attr('y',100).attr('transform', 'rotate(-90)').attr('text-anchor', 'middle').text('% GAP, NET MIGRATION')
+
 
 
 

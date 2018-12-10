@@ -75,7 +75,8 @@
                 .on('click', function(e, i) {
                      
                      map.flyTo({
-                         center: e.geometry.coordinates[0][0],
+                        //  center: e.geometry.coordinates[0][0],
+                         center: e.lngLat,
                          zoom: 4
                      });
 
@@ -90,13 +91,15 @@
                     d3.select(this).attr("fill-opacity", 0.2);
                     //d3.select("#hover").text()
                     
-                    div.transition().duration(150).style("opacity", 1).style("visibility", 'hidden');
+                    div.transition().duration(300).style("opacity", 1).style("visibility", 'hidden');
                     
                 })
                 .on('mousemove', function(d) {
                     d3.select("#hover")
                         .attr('x', function() { return d3.mouse(this)[0] + 20; })
                         .attr('y', function() { return d3.mouse(this)[1] + 10; });
+                        
+                     div.transition().duration(300).style("opacity", 1).style("visibility", 'visible');
                 });
                 
             
@@ -196,7 +199,8 @@
                  .on('click', function(e, i) {
                      
                      map2.flyTo({
-                         center: e.geometry.coordinates[0][0],
+                        //  center: e.geometry.coordinates[0][0],
+                         center: e.lngLat,
                          zoom: 4
                      });
 
@@ -207,13 +211,15 @@
                 .on('mouseout', function() {
                     d3.select(this).attr("fill", "lightgray");
                     d3.select(this).attr("fill-opacity", 0.2);
-                div.transition().duration(150).style("opacity", 1).style("visibility", 'hidden');
+                div.transition().duration(300).style("opacity", 1).style("visibility", 'hidden');
 
                 })
                 .on('mousemove', function(d) {
                     d3.select("#hover2")
                         .attr('x', function() { return d3.mouse(this)[0] + 20; })
                         .attr('y', function() { return d3.mouse(this)[1] + 10; });
+                     div.transition().duration(300).style("opacity", 1).style("visibility", 'visible');
+
                 });
         
     
