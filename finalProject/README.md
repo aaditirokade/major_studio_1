@@ -6,6 +6,8 @@ Exploring connections and trends in access to electricity, net migration and pup
 
 At least 110 million of the 600 million people are still living without access to electricity in Africa live in urban areas. Access to electricity contributes to the quality of life. This project visualizes the possible connections and trends between the net migration, access to electricity and population. It also visualizes the trends in access to electricity and population distribution for urban and rural Africa.
 
+**view demo [here](https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/ScreenRecording.mov)**
+
 ### **Sources**
 
 1. Energy
