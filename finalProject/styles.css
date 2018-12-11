@@ -1,8 +1,5 @@
 body {
-        	margin-top: 5px;
-        	margin-left: 5px;
-        	margin-right: 5px;
-        	margin-bottom: 5px;
+        
         	font-family: Lato, Helvetica nueu, arial, sans-serif;
 
         }
@@ -58,9 +55,21 @@ body {
             z-index: 0;
             left:38%;
             top:10%;
-            font-family: Lato;
             font-size: 14px;
             color: #efefef;
+        }
+        
+        #labell{
+            background:rgba(160,160,255,0.2);
+            /*border-bottom: solid;*/
+            /*border-width: 0.25px;*/
+            position: absolute;
+            z-index: 1;
+            left:20%;
+            top:5%;
+            font-size: 14px;
+            color: #efefef;
+            text-transform: uppercase;
         }
         
         #label2 {
@@ -320,13 +329,49 @@ text#countryName{
 }
 
 /*.footer {*/
-/*   position: fixed;*/
-/*   left: 0;*/
-/*   bottom: 0;*/
-/*   width: 100%;*/
+   /*position: fixed;*/
+   /*left: 0;*/
+   /*bottom: 0;*/
+   
+/*   bottom: 0%;*/
 /*   background-color: #111;*/
-/*   color: #efefef;*/
+   /*color: #efefef;*/
    /*text-align: left;*/
    /*padding-left: 25px;*/
-/*   z-index: 999999;*/
+   /*z-index: 3;*/
 /*}*/
+
+.footer {
+  background-color: #1D1E24;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+
+   font-size: 10px;
+
+}
+
+    .footer text{
+            color: #cecece;
+            margin-left: 20px;
+            font-size: 12px;
+
+    }
+
+        a{
+            color: white;
+            
+            margin-left: 20px;
+            font-size: 10px;
+            text-decoration: underline;
+        }
+        
+a:link {
+  color: red;
+}
+
+a:hover {
+  color: hotpink;
+}

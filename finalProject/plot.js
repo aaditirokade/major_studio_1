@@ -144,7 +144,7 @@ var svg3 = d3.select("#overlay").append("svg").attr('id','linePlot')
       
       
     // VIEW ALL LINK   
-    svg3.append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html")
+    svg3.append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
       .append('text').attr('x','600').attr('y','70').text('VIEW ALL').attr('fill','#efefef')
       .style('font-weight','bold').style('text-decoration','underline').style("font-size", "12px").style("font-family", "Lato")
       
@@ -423,7 +423,7 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
       
       
                 // VIEW ALL LINK   
-                svg.append('g').append('a').attr("xlink:href", "https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html")
+                svg.append('g').append('a').attr("xlink:href", "https://vfs.cloud9.us-east-1.amazonaws.com/vfs/a781720202c74ba080f5141c784fc66b/preview/assignment3/page1/page3index.html")
                   .append('text').attr('x','600').attr('y','80').text('VIEW ALL').attr('fill','#efefef')
                   .style('font-weight','bold').style('text-decoration','underline').style("font-size", "10px").style("font-family", "Lato")
       
@@ -554,9 +554,60 @@ svg3.selectAll(".dot4").data(popGapData).enter().append("circle").attr("class", 
                 // AXES LABELS    
                 svg.append('g').append('text').attr('class', 'label').attr('x',-(yhhh+120)).attr('y',100).attr('transform', 'rotate(-90)').attr('text-anchor', 'middle').text('% GAP, NET MIGRATION')
 
+                // MAX-MIN VALUES
+                
+                // ACCESS TO ELECTRICITY : URBAN
+                var maxUrEngData = Math.max(...inUrEngData); var minUrEngData = Math.min(...inUrEngData);
+                var maxUrEngYear = yearr(maxUrEngData, inUrEngData); var minUrEngYear = yearr(minUrEngData, inUrEngData);
+                
+                // ACCESS TO ELECTRICITY : RURAL
+                var maxRuEngData = Math.max(...inRuEngData); var minRuEngData = Math.min(...inRuEngData);     
+                var maxRuEngYear = yearr(maxRuEngData, inRuEngData); var minRuEngYear = yearr(minRuEngData, inRuEngData);
+                
+                // POPULATION : RURAL
+                var maxRuPopData = Math.max(...inRuPopData); var minRuPopData = Math.min(...inRuPopData);     
+                var maxRuPopYear = yearr(maxRuPopData, inRuPopData); var minRuPopYear = yearr(minRuPopData, inRuPopData);
+                
+                // POPULATION : URBAN
+                var maxUrPopData = Math.max(...inUrPopData); var minUrPopData = Math.min(...inUrPopData);     
+                var maxUrPopYear = yearr(maxUrPopData, inUrPopData); var minUrPopYear = yearr(minUrPopData, inUrPopData);
+                           
+               // NET MIGRATION
+               var maxMigData = Math.max(...inMigData); var minMigData = Math.min(...inMigData);
+               var maxMigYear = yearr(maxMigData, inMigData); var minMigYear = yearr(minMigData, inMigData);
+
+                
+               // SUMMARY TEXT
+               
+               var sumy=1150;
+               var sumx = 140;
+               
+            //   svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy).text('SUMMARY').attr('fill','#cecece').style('font-size','14px')
+               
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+75).text('URBAN').attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx+300).attr('y',sumy+75).text('RURAL').attr('fill','#cecece').style('font-size','14px')
+               
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+40).text('% ACCESS TO ELECTRICITY').attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+110).text('MAX:  '+ maxUrEngData.toFixed(2) +' in '+ maxUrEngYear).attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+135).text('MIN:  '+ minUrEngData.toFixed(2) +' in '+ minUrEngYear).attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx+300).attr('y',sumy+110).text('MAX:  '+ maxRuEngData.toFixed(2) +' in '+ maxRuEngYear).attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx+300).attr('y',sumy+135).text('MIN:  '+ minRuEngData.toFixed(2) +' in '+ minRuEngYear).attr('fill','#cecece').style('font-size','14px')
+
+               
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+200).text('% POPULATION').attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+235).text('MAX:  '+ maxUrPopData.toFixed(2) +' in '+ maxUrPopYear).attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx).attr('y',sumy+265).text('MIN:  '+ minUrPopData.toFixed(2) +' in '+ minUrPopYear).attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx+300).attr('y',sumy+235).text('MAX:  '+ maxRuPopData.toFixed(2) +' in '+ maxRuPopYear).attr('fill','#cecece').style('font-size','14px')
+               svg.append('g').append('text').attr('class', 'sum').attr('x', sumx+300).attr('y',sumy+265).text('MIN:  '+ minRuPopData.toFixed(2) +' in '+ minRuPopYear).attr('fill','#cecece').style('font-size','14px')
 
 
-
+                
 }
   
   
+  // YEAR based on index
+  function yearr(inValue, inArray){
+      var indx = inArray.indexOf(inValue);
+      if(indx===0)return '2012';else if(indx===1)return '2013';else if(indx===2)return '2014';
+      else if(indx===3)return '2015';else if(indx===4)return '2016';
+  }

@@ -81,7 +81,9 @@
                      });
 
                     d3.select('body').attr('id','detail');
-                    plot(e.properties.brk_a3); 
+                    plot(e.properties.brk_a3);
+                    
+                    document.getElementById('labell').style.visibility = "hidden";
                     document.getElementById('map2').style.visibility = "hidden";
                       
                 })
@@ -126,6 +128,10 @@
         // var ruralButton = d3.select("#map").append('button').attr('id','rubtn1').text('RURAL')
         // ruralButton.on('click', function() { console.log('here here'); })
         
+        
+        d3.select("body").append('text').attr('id','labell')
+                .text('Exploring connections and trends in access to electricity, net migration and pupulation for Africa (2012-16)').attr("font-family", "sans-serif")
+                .style("font-size", 18).style("fill", "white").style("font-weight", 'bold');
         
         d3.select("#map").append('text').attr('id','label1')
                 .text('% POPULATION : 2016').attr("font-family", "sans-serif")
@@ -197,13 +203,14 @@
                           .style("top", (d3.event.pageY - 28) + "px");
                 })
                  .on('click', function(e, i) {
-                     
+                      document.getElementById('labell').style.visibility = "hidden";
+                      
                      map2.flyTo({
                         //  center: e.geometry.coordinates[0][0],
                          center: e.lngLat,
                          zoom: 4
                      });
-
+                
                     d3.select('body').attr('id','detail');
                     plot(e.properties.brk_a3);  
                       
