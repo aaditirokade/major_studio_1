@@ -130,7 +130,7 @@
         
         
         d3.select("body").append('text').attr('id','labell')
-                .text('Exploring connections and trends in access to electricity, net migration and pupulation for Africa (2012-16)').attr("font-family", "sans-serif")
+                .text('Exploring connections and trends in access to electricity, net migration and population for Africa (2012-16)').attr("font-family", "sans-serif")
                 .style("font-size", 18).style("fill", "white").style("font-weight", 'bold');
         
         d3.select("#map").append('text').attr('id','label1')
