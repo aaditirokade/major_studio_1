@@ -1,6 +1,6 @@
 
 ### **Title**
-Exploring connections and trends in access to electricity, net migration and pupulation for Africa (2012-16)
+Exploring connections and trends in access to electricity, net migration and population for Africa (2012-16)
 
 ### **Description**
 
