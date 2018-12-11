@@ -8,6 +8,8 @@ At least 110 million of the 600 million people are still living without access t
 
 **view demo [here](https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/ScreenRecording.mov)**
 
+**project** [page1](https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/index.html) . [page2](https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page3index.html) . [page3](https://htmlpreview.github.io/?https://github.com/aaditirokade/major_studio_1/blob/master/finalProject/page4index.html)
+
 ### **Sources**
 
 1. Energy
